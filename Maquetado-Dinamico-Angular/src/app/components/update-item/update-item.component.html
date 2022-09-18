@@ -1,0 +1,144 @@
+<div class="row mt-2 mb-5 mx-3 bordeDiv">
+    <div class="row mb-3">
+        <div class="col-6 mt-3 d-flex">
+            <div>
+                <button class="btn btn-primary me-3" (click)="goHome()">
+                     Home
+                </button>
+            </div>
+            <div>
+                <h5>
+                    Item Anterior
+                    <hr>
+                </h5>
+            </div>
+        </div>
+
+        <div class="col-6 mt-3">
+            <div class="d-flex flex-row-reverse">
+                <div>
+                    <button class="btn btn-danger ms-3" (click)="deleteItem()">
+                        Eliminar
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="col-4 d-flex flex-column justify-content-center">
+        <div class="row">
+            <div  class="d-flex">
+                <div>
+                    <a href={{item.img_href}} target="_blank">
+                        <img src={{item.img}} alt="Logo Contra Editorial" class="logo img-fluid">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex my-2">
+            <div class="d-flex">
+                <p>{{item.text}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-5 flex-column-reverse justify-content-center">
+                
+        <div>
+            <ul *ngFor="let itemlist of item?.list" class="list-group">
+                <li class="list-group-item bg-info m-1"> 
+                    <strong>{{itemlist}}</strong>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="row mt-3 mb-3">
+        <form class="d-flex" [formGroup]="formularioItemXp" (ngSubmit)="onSubmit(formularioItemXp.value)">
+            <div class="row d-flex flex-row">
+                <div class="mb-3">
+                    <label for="Form-Imagen" class="form-label">Nueva Imagen</label>
+                    <input type="file" class="form-control" id="Imagen"(change)="datosImg($event)" formControlName="img">
+                  </div>
+                  <div class="mb-3">
+                    <label for="text" class="form-label">Vinculo para la imagen</label>
+                    <input type="text" class="form-control" id="text" placeholder="Vinculo" formControlName="href">
+                  </div>
+                  <div class="mb-3">
+                    <textarea class="form-control" name="text" id="text" cols="15" rows="3" placeholder="Mas Informacion" formControlName="text"></textarea>
+                  </div>
+
+                  <ng-container formArrayName="list">
+                    <ng-container *ngFor="let listaArray of list.controls; index as i">
+                        <label for="colFormLabel" class="col-sm-2 col-form-label">
+                            <strong>Valor de Lista</strong>
+                                <span>
+                                    <button type="button" class="btn btn-danger ms-2" (click)="deleteItemList(i)">x</button> 
+                                </span>
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="text" formControlName= "{{i}}"  class="form-control mb-3" placeholder="Completa este campo de lista y agrega mas, de lo contrario, Eliminalo">
+                        </div>
+                    </ng-container>
+                    <div>
+                        <button type="button" class="mt-2 btn btn-primary" (click)="addItemlist()">Agregar campo</button>
+                    </div>
+                </ng-container>
+
+                <button type="submit" class="btn btn-primary mt-5">
+                    Vista Previa 
+                </button>
+            </div>
+            
+        </form>
+       </div>
+</div>
+
+
+<ng-container *ngIf="formularioEnviado">
+    <div class="row m-3  my-5 bordeDiv">
+        
+        <div class="col-4 d-flex flex-column justify-content-center">
+            <div class="row">
+                <div  class="d-flex my-3">
+                    <div>
+                        <a href="{{previewEnvio.img_href}}" target="_blank">
+                            <img src={{previewEnvio.img}} alt="Logo Contra Editorial" class="logo img-fluid">
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="d-flex my-2">
+                <div class="d-flex">
+                    <p>{{previewEnvio.text}}</p>
+                </div>
+            </div>
+        </div>
+    
+        <div class="col-5 flex-column-reverse justify-content-center my-3">
+                    
+            <div>
+                <ul *ngFor="let itemlist of previewEnvio?.list" class="list-group">
+                    <li class="list-group-item bg-info m-1"> 
+                        <strong>{{itemlist}}</strong>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="d-flex mt-5 flex-row justify-content-center">
+            <div>
+                <button class="btn btn-success mx-2" (click)="enviarform()">
+                    Enviar
+                </button>
+            </div>
+            <div>
+                <button class="btn btn-danger mx-2" (click)="formularioEnviado = !formularioEnviado">
+                    Deshacer
+                </button>
+            </div>
+        </div>
+    </div>
+</ng-container>

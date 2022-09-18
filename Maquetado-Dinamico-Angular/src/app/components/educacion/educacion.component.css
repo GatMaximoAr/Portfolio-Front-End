@@ -1,0 +1,14 @@
+.logoIpem {
+    height: 150px;
+    width: 150px;
+}
+
+.bordeDiv {
+    border-width: 1px;
+    border-style: ridge;
+    border-color: lightsteelblue;
+}
+
+.oculto {
+    display: none;
+}
