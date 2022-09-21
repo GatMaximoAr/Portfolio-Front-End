@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AddItemComponent } from './components/add-item/add-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateItemComponent } from './components/update-item/update-item.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 
@@ -35,6 +36,7 @@ import { UpdateItemComponent } from './components/update-item/update-item.compon
     ExperienciaItemComponent,
     AddItemComponent,
     UpdateItemComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
