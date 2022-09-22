@@ -1,6 +1,6 @@
 <div class="row mt-3 mb-5">
     <div class="d-flex flex-row-reverse">
-        <div>
+        <div [ngClass]="[edicion ? '' : 'oculto']">
             <a [routerLink]="['/Portfolio/update-item', item.id]">
                 <button type="button" class="btn btn-info">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">

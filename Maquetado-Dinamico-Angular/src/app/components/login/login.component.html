@@ -1,25 +1,35 @@
-<div class="container-fluid">
-    <div class="row mt-5">
-        <div class="d-flex flex-colunm justify-content-center mt-5 mb-2">
+<div class="container-fluid fondo-login">
+    <div class="row">
+        <div class="d-flex flex-colunm justify-content-center mt-5 mb-5">
             <div class="card border-secondary w-50 mb-5">
                 <div class="card-body py-3">
-                    <h3 class="card-title mb-3">Login</h3>
-                    <form>
+                    <h3 class="card-title">Login</h3>
+                    <form [formGroup]="formularioLogin" (ngSubmit)="adminLog(formularioLogin.value)">
                         <div class="mb-3">
-                            <label for="formGroupExampleInput" class="form-label">Usuario</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ingrese Nombre de Usuario">
+                            <label for="form_password" class="form-label">Usuario</label>
+                            <input type="text" class="form-control" id="username" placeholder="Ingrese Nombre de Usuario" formControlName="userName">
                           </div>
+
                           <div class="mb-3">
-                            <label for="formGroupExampleInput2" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Ingrese Password">
+                            <label for="form_password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="Ingrese Password" formControlName="password">
                           </div>
     
+                          <ng-container *ngIf="logError">
+                            <small class="text-danger"> <b>Usuario y/o Password son incorectos</b> </small>
+                        </ng-container>
                           <div>
-                            <button class="btn btn-success mt-2 form-control">
+                            <button type="submit" [disabled]="formularioLogin.invalid" class="btn btn-success mt-2 form-control">
                                 Login
                             </button>
                           </div>
                     </form>
+
+                    <div>
+                        <button type="button" class="btn btn-primary mt-4" (click)="cambiarValor()">
+                            Entrar como visitante
+                        </button>
+                      </div>
                 </div>
     
             </div>

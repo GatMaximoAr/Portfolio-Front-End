@@ -1,4 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
+
 import { EdicionService } from '../edicion.service';
 
 @Component({
@@ -6,18 +9,26 @@ import { EdicionService } from '../edicion.service';
   templateUrl: './acerca-de.component.html',
   styleUrls: ['./acerca-de.component.css']
 })
-export class AcercaDeComponent implements OnInit {
-
-
+export class AcercaDeComponent implements OnInit, OnDestroy {
   @ViewChild ('AcercaDe') acercade:ElementRef
 
-  constructor(private edicionService:EdicionService) { }
+  edicion:boolean
+  sub:Subscription
+
+  constructor(private edicionService:EdicionService,
+    private authService:AuthService) { 
+      this.sub = this.authService.edicion_Access.subscribe(resp => this.edicion = resp)
+    }
 
   ngOnInit(): void {
   }
 
   modificarCampo(param:ElementRef){
     this.edicionService.modificarCampo(param)
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe()
   }
 
 }

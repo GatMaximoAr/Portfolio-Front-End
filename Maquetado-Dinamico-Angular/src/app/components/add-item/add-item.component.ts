@@ -83,6 +83,6 @@ export class AddItemComponent implements OnInit {
   }
 
   goHome():void {
-    this.router.navigate([''])
+    this.router.navigate(['/Portfolio'])
   }
 }

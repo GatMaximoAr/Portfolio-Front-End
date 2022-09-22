@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { Item } from '../models/Item';
+import { User } from '../models/User';
 
 
 const httpOptions = {
@@ -14,7 +15,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class DataService {
-  private url = "http://localhost:5001/items"
+  private url = "http://localhost:5001/items" //url "Items"
+  private url_Users = "http://localhost:5001/users" // url users
 
   constructor(private http:HttpClient) { }
 
@@ -34,5 +36,9 @@ export class DataService {
   deleteItem(itemdelete:Item):Observable<Item> {
     const itemUrl = `${this.url}/${itemdelete.id}`
     return this.http.delete<Item>(itemUrl, httpOptions)
+  }
+
+  getUsers():Observable<User[]> {
+    return this.http.get<User[]>(this.url_Users)
   }
 }
