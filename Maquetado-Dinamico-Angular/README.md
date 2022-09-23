@@ -1,27 +1,51 @@
-# MaquetadoDinamicoAngular
+# Maquetado-Dinamico-Angular ( Maquetado preliminar )
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
+Este proyecto corresponde a el desafio del modulo 3, Argentina Programa.
 
-## Development server
+**Funcionalidades de angular utilizadas:**
+* Componentes
+* Servicios
+* Reactive forms
+* Angular routing
+* Angular Guards
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+**Otras**
+* Oservables y subcripciones (Rxjs)
+* Json server (fake api)
+* Bootstrap CSS
 
-## Code scaffolding
+## Para el correcto funcionamiento de este maquetado preliminar
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+**Json-server**
+Se requiere tener instalado Json server (fake api) enlazado al archivo `db.json` el cual de iniciar en el puerto " 5001 "
 
-## Build
+Como se muestra en el siguiente ejemplo:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+en el archivo **Package.json** scripts, agregar
 
-## Running unit tests
+`"server": "json-server --watch db.json --port 5001"`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+**Bootstrap**
 
-## Running end-to-end tests
+Se requiere tener incluido Bootstrap en la carpeta **node_modules**, mediante `npm i bootstrap`  
+### Visualizar proyecto
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+**Iniciar Json-server**
+`npm run server`
 
-## Further help
+**Iniciar ng-serve**
+`ng serve -o`
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Sobre el Login
+
+**Entrar como visitante**
+permite un vistazo al diseño del portfolio
+
+**Entrar con "credenciales"**
+Ademas de permitir ver el diseño de portfolio, da al usuario acceso a funciones de edicion **(Aun en proceso)**. Ademas da acceso a la rutas protegidas de la aplicacion **(en proceso)** 
+
+### Credenciales
+
+**usuario** : admin
+
+**Password** : admin

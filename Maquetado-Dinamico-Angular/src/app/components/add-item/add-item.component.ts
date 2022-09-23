@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Item } from '../../models/Item';
 import { DataService } from '../../services/data.service';
@@ -21,12 +21,12 @@ export class AddItemComponent implements OnInit {
     private router:Router) { 
 
       this.formularioItemXp = this._builder.group({
-        img: [''],
-        text: [''],
-        href: [''],
+        img: ['', Validators.required],
+        text: ['', Validators.required],
+        href: ['', Validators.required],
     
         list:this._builder.array([
-          this._builder.control('')
+          this._builder.control('', [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)])
           
         ])
     })
@@ -84,5 +84,10 @@ export class AddItemComponent implements OnInit {
 
   goHome():void {
     this.router.navigate(['/Portfolio'])
+  }
+
+  resetForm() {
+    this.formularioEnviado = !this.formularioEnviado
+    this.formularioItemXp.reset()
   }
 }

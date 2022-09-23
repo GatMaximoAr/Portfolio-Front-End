@@ -47,7 +47,7 @@
                         </div>
                     </ng-container>
 
-                    <button type="submit" class="btn btn-primary mt-5 mb-3">
+                    <button [disabled]="formularioItemXp.invalid" type="submit" class="btn btn-primary mt-5 mb-3">
                         Vista Previa 
                     </button>
                 </div>
@@ -96,7 +96,7 @@
                     </button>
                 </div>
                 <div>
-                    <button class="btn btn-danger mx-2" (click)="formularioEnviado = !formularioEnviado">
+                    <button class="btn btn-danger mx-2" (click)="resetForm()">
                         Deshacer
                     </button>
                 </div>

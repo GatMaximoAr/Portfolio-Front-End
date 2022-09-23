@@ -3,3 +3,8 @@
     border-style: ridge;
     border-color: lightsteelblue;
 }
+
+.logo {
+    width: 300px;
+    height: auto;
+}
