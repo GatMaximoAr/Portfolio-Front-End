@@ -1,0 +1,45 @@
+<div class="accordion-item mt-5">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <h4>Proyectos</h4>
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+          <div class="row">
+
+              <ng-container *ngFor="let proyecto of proyectos">
+                <div class="row mb-5">
+                    <div class="col-6 flex-column">
+                        <div>
+                            <h5 class="text-uppercase mt-3 mb-3">
+                                {{proyecto.titulo}}
+                            </h5>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <h6>Tecnologias Utilizadas</h6>
+                        </div>
+  
+                        <div class="d-flex">
+  
+                            <ng-container *ngFor="let item of proyecto.imgs">
+                                <div>
+                                    <a href={{item.vinculo_img}} target="_blank">
+                                        <img src={{item.imagen}} alt="Logo Android studio" class="Logos-proyecto img-fluid img-thumbnail">
+                                    </a>
+                                    <p class="mt-2">
+                                        <b class="text-uppercase">{{item.nombre_img}}</b>
+                                    </p>
+                                </div>
+                            </ng-container>
+  
+                        </div>
+                    </div>
+                </div>
+              </ng-container>
+              
+          </div>
+      </div>
+    </div>
+  </div>

@@ -1,7 +1,9 @@
-export interface Item {
+import { ItemList } from "./ItemList";
+
+export interface Item_exp {
     id?:number;
+    img_experiencia:String;
     img_href:string
-    img:any;
-    list:any[];
-    text:string;
+    actividad:String[];
+    sobre_experiencia:string;
 }

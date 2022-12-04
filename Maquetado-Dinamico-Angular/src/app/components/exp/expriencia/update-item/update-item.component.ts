@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DataService } from '../../services/data.service';
-import { Item } from '../../models/Item';
+import { ExperienciaService } from 'src/app/services/Experiencia/experiencia.service';
+import { Item_exp } from '../../../../models/Item';
 
 @Component({
   selector: 'app-update-item',
@@ -10,30 +10,33 @@ import { Item } from '../../models/Item';
   styleUrls: ['./update-item.component.css']
 })
 export class UpdateItemComponent implements OnInit {
-  item:Item = {
-    img : "",
+  item:Item_exp = {
+    img_experiencia : "",
     img_href : "",
-    list : [],
-    text : ""
+    actividad : [],
+    sobre_experiencia: ""
   }
   indice:number
+  
   formularioItemXp:FormGroup;
-  valorImg: string | ArrayBuffer;
-  previewEnvio:Item
+  
+  foto:string
+  previewEnvio:Item_exp
+  
   formularioEnviado:boolean = false
   
 
-  constructor(private dataService:DataService,
+  constructor(private dataService:ExperienciaService,
     private route:ActivatedRoute,
     private _builder:FormBuilder,
     private router:Router) { 
 
       this.formularioItemXp = this._builder.group({
-        img: ['', Validators.required],
-        text: ['', Validators.required],
-        href: ['', Validators.required],
+        img_experiencia: ['', Validators.required],
+        sobre_experiencia: ['', Validators.required],
+        img_href: ['', Validators.required],
     
-        list:this._builder.array([
+        actividad:this._builder.array([
           this._builder.control('', [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)])
           
         ])
@@ -41,7 +44,7 @@ export class UpdateItemComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.indice = this.route.snapshot.params['id'] - 1
+    this.indice = this.route.snapshot.params['id']
     this.getItems()
     
   }
@@ -49,8 +52,12 @@ export class UpdateItemComponent implements OnInit {
   getItems() {
     this.dataService.getItems()
     .subscribe(resp => {
-      let respaldo:Item[] = resp
-      this.item = respaldo[this.indice]
+      let respaldo:Item_exp[] = resp
+      respaldo.find(call => {
+        if(call.id == this.indice) {
+          this.item = call;
+        }
+      })
     })
     
   }
@@ -60,12 +67,12 @@ export class UpdateItemComponent implements OnInit {
     return this.formularioItemXp.controls
   }
 
-  get list(){
-    return this.formularioItemXp.get('list') as FormArray;
+  get actividad(){
+    return this.formularioItemXp.get('actividad') as FormArray;
   }
 
-  onSubmit(valor:Item){
-    valor.img = this.valorImg
+  onSubmit(valor:Item_exp){
+   // valor.img_experiencia = this.valorImg
     this.previewEnvio = valor
     this.formularioEnviado = !this.formularioEnviado
   } 
@@ -73,14 +80,16 @@ export class UpdateItemComponent implements OnInit {
   datosImg(event:Event): void {
     const target = event.target as HTMLInputElement;
     const file = target.files![0];
+    console.log(file.name.toString())
     let filereader = new FileReader();
     filereader.readAsDataURL(file);
       filereader.addEventListener('load', (e)=>{
-        this.valorImg = e.target!.result!
+        //this.valorImg = e.target!.result!
+        this.foto = e.target!.result?.toString()!
         })
   }
 
-  putItem(datos:Item){
+  putItem(datos:Item_exp){
     this.dataService.editItem(datos)
     .subscribe(data => {
       console.log(data)
@@ -89,11 +98,11 @@ export class UpdateItemComponent implements OnInit {
 
   addItemlist(){
    /*  (<FormArray>this.formularioItemXp.get('list')).push(new FormControl(null)); */
-   this.list.push(new FormControl(null));
+   this.actividad.push(new FormControl(null));
   }
 
   deleteItemList(index:number){
-    this.list.removeAt(index);
+    this.actividad.removeAt(index);
     console.log(index)
   }
 
@@ -102,18 +111,24 @@ export class UpdateItemComponent implements OnInit {
   }
 
   enviarform(){
-    this.item.img = this.previewEnvio.img
+    this.item.img_experiencia = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO4__ElLqeg5sCJ2InBYVJxXw6kv-iM98eZlRXxtAD90glfNfDOX1gK1fik2ExGoMktrY&usqp=CAU"
     this.item.img_href = this.previewEnvio.img_href
-    this.item.text = this.previewEnvio.text
+    this.item.sobre_experiencia = this.previewEnvio.sobre_experiencia
+    this.item.actividad = this.previewEnvio.actividad
     this.putItem(this.item)
-    this.router.navigate([''])
+    //this.router.navigate([''])
+    console.log(this.item)
   }
 
   deleteItem() {
-    this.dataService.deleteItem(this.item).subscribe(resp => {
+    this.dataService.deleteItem(this.item.id!).subscribe(resp => {
       console.log(resp)
     })
-    this.router.navigate([''])
+    this.router.navigate(['/portfolio'])
+  .then(() => {
+    window.location.reload();
+  });
+    
   }
 
   resetForm() {

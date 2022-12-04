@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Item } from '../../models/Item';
+import { Item_exp } from 'src/app/models/Item'; 
 import { AuthService } from 'src/app/services/auth.service';
 import { Subscription } from 'rxjs';
 
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 })
 export class ExperienciaItemComponent implements OnInit, OnDestroy {
 
-  @Input('data') item:Item
+  @Input('data') item:Item_exp
 
   edicion:boolean
   sub:Subscription
@@ -20,6 +20,7 @@ export class ExperienciaItemComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    //console.log(this.item)
   }
 
   ngOnDestroy(): void {

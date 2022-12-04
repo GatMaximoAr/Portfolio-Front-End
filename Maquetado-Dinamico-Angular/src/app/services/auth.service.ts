@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
   
-  private admin_Edicion:BehaviorSubject<boolean> = new BehaviorSubject(false)
+  private admin_Edicion:BehaviorSubject<boolean> = new BehaviorSubject(true)
 
   private guest:BehaviorSubject<boolean> = new BehaviorSubject(false)
   

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
-import { DataService } from 'src/app/services/data.service';
+import { ExperienciaService } from 'src/app/services/Experiencia/experiencia.service'; 
 
 @Component({
   selector: 'app-login',
@@ -17,7 +17,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService:AuthService,
     private route:Router, private __builder:FormBuilder, 
-    private dataService:DataService) {
+    private dataService:ExperienciaService) {
+      
       this.dataService.getUsers().subscribe(resp => this.user = resp) 
 
       this.formularioLogin = this.__builder.group({

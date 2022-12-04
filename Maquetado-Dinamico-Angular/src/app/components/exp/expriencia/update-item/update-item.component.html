@@ -25,12 +25,13 @@
             
         </div>
     </div>
+    
     <div class="col-4 d-flex flex-column justify-content-center">
         <div class="row">
             <div  class="d-flex">
                 <div>
                     <a href={{item.img_href}} target="_blank">
-                        <img src={{item.img}} alt="Logo Contra Editorial" class="logo img-fluid">
+                        <img src={{item.img_experiencia}} alt="Logo Contra Editorial" class="logo img-fluid">
                     </a>
                 </div>
             </div>
@@ -38,7 +39,7 @@
 
         <div class="d-flex my-2">
             <div class="d-flex">
-                <p>{{item.text}}</p>
+                <p>{{item.sobre_experiencia}}</p>
             </div>
         </div>
     </div>
@@ -46,7 +47,7 @@
     <div class="col-5 flex-column-reverse justify-content-center">
                 
         <div>
-            <ul *ngFor="let itemlist of item?.list" class="list-group">
+            <ul *ngFor="let itemlist of item?.actividad" class="list-group">
                 <li class="list-group-item bg-info m-1"> 
                     <strong>{{itemlist}}</strong>
                 </li>
@@ -60,18 +61,18 @@
             <div class="row d-flex flex-row">
                 <div class="mb-3">
                     <label for="Form-Imagen" class="form-label">Nueva Imagen</label>
-                    <input type="file" class="form-control" id="Imagen"(change)="datosImg($event)" formControlName="img">
+                    <input type="file" class="form-control" id="Imagen"(change)="datosImg($event)" formControlName="img_experiencia">
                   </div>
                   <div class="mb-3">
                     <label for="text" class="form-label">Vinculo para la imagen</label>
-                    <input type="text" class="form-control" id="text" placeholder="Vinculo" formControlName="href">
+                    <input type="text" class="form-control" id="text" placeholder="Vinculo" formControlName="img_href">
                   </div>
                   <div class="mb-3">
-                    <textarea class="form-control" name="text" id="text" cols="15" rows="3" placeholder="Mas Informacion" formControlName="text"></textarea>
+                    <textarea class="form-control" name="text" id="text" cols="15" rows="3" placeholder="Mas Informacion" formControlName="sobre_experiencia"></textarea>
                   </div>
 
-                  <ng-container formArrayName="list">
-                    <ng-container *ngFor="let listaArray of list.controls; index as i">
+                  <ng-container formArrayName="actividad">
+                    <ng-container *ngFor="let listaArray of actividad.controls; index as i">
                         <label for="colFormLabel" class="col-sm-2 col-form-label">
                             <strong>Valor de Lista</strong>
                                 <span>
@@ -105,7 +106,7 @@
                 <div  class="d-flex my-3">
                     <div>
                         <a href="{{previewEnvio.img_href}}" target="_blank">
-                            <img src={{previewEnvio.img}} alt="Logo Contra Editorial" class="logo img-fluid">
+                            <img src={{previewEnvio.img_experiencia}} alt="Logo Contra Editorial" class="logo img-fluid">
                         </a>
                     </div>
                 </div>
@@ -113,7 +114,7 @@
     
             <div class="d-flex my-2">
                 <div class="d-flex">
-                    <p>{{previewEnvio.text}}</p>
+                    <p>{{previewEnvio.sobre_experiencia}}</p>
                 </div>
             </div>
         </div>
@@ -121,7 +122,7 @@
         <div class="col-5 flex-column-reverse justify-content-center my-3">
                     
             <div>
-                <ul *ngFor="let itemlist of previewEnvio?.list" class="list-group">
+                <ul *ngFor="let itemlist of previewEnvio?.actividad" class="list-group">
                     <li class="list-group-item bg-info m-1"> 
                         <strong>{{itemlist}}</strong>
                     </li>
