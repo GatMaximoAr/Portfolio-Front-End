@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { Acerca } from 'src/app/models/Acerca';
 import { AcercaService } from '../../services/Acerca-de/acerca.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -14,31 +14,47 @@ export class AcercaDeComponent implements OnInit, OnDestroy {
 
   edicion:boolean
   sub:Subscription
-  acerca:Acerca[]
+  acerca:Acerca[] = []
+  agrega:BehaviorSubject<boolean> = new BehaviorSubject(true)
 
   obj:Acerca = {nombre_usuario:"", 
-                apellido_usuario:"", imagen:"", sobre_usuario: "", ocupacion:""} 
+                apellido_usuario:"", imagen:"", sobre_usuario: "", ocupacion:"", img_portada: ""} 
 
   constructor(private authService:AuthService, private acercaService:AcercaService)
      { 
       this.sub = this.authService.edicion_Access.subscribe(resp => this.edicion = resp)
 
-      this.getAcerca()
+      
     }
 
   ngOnInit(): void {
+    this.getAcerca()
+    console.log(this.acerca.length)
     
   }
 
   getAcerca():void {
     this.acercaService.getAcerca().
     subscribe(resp => {
-      this.obj = resp
-
-      
+      this.acerca = resp
+      if (this.acerca.length > 0) {
+        this.obj = this.acerca[0]
+        this.agrega.next(false)
+      }
 
       //console.log(this.obj);
     })
+    
+  }
+
+  existData() {
+    if (this.acerca.length != 0) {
+      this.agrega.subscribe(resp => {
+        console.log(resp)
+      })
+
+      console.log(this.agrega)
+    }
   }
 
   ngOnDestroy(): void {

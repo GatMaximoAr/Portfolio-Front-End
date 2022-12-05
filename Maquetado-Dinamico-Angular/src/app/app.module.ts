@@ -24,6 +24,8 @@ import { SkillsComponent } from './components/acordeon-skils-proyectos/skills/sk
 import { ProyectosComponent } from './components/acordeon-skils-proyectos/proyectos/proyectos.component';
 import { AddItemEduComponent } from './components/educacion/add-item-edu/add-item-edu.component';
 import { UpdateItemEduComponent } from './components/educacion/update-item-edu/update-item-edu.component';
+import { AcercaAddComponent } from './components/acerca-de/acerca-add/acerca-add.component';
+import { AcercaUpdateComponent } from './components/acerca-de/acerca-update/acerca-update.component';
 
 
 
@@ -50,6 +52,8 @@ import { UpdateItemEduComponent } from './components/educacion/update-item-edu/u
     ProyectosComponent,
     AddItemEduComponent,
     UpdateItemEduComponent,
+    AcercaAddComponent,
+    AcercaUpdateComponent,
   ],
   imports: [
     BrowserModule,

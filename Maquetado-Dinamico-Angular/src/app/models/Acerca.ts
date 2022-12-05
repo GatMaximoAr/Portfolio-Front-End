@@ -5,4 +5,5 @@ export interface Acerca {
     imagen: string;
     sobre_usuario: string;
     ocupacion: string;
+    img_portada: string;
 }

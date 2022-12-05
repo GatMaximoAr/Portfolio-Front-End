@@ -8,6 +8,8 @@ import { AdminGuard } from './guards/admin.guard';
 import { GuestGuard } from './guards/guest.guard';
 import { AddItemEduComponent } from './components/educacion/add-item-edu/add-item-edu.component';
 import { UpdateItemEduComponent } from './components/educacion/update-item-edu/update-item-edu.component';
+import { AcercaAddComponent } from './components/acerca-de/acerca-add/acerca-add.component';
+import { AcercaUpdateComponent } from './components/acerca-de/acerca-update/acerca-update.component';
 
 const routes: Routes = [
   {path: 'Portfolio', component: HomeComponent /*, canActivate: [GuestGuard]*/},
@@ -19,6 +21,10 @@ const routes: Routes = [
   {path: 'Portfolio/add-item-edu', component: AddItemEduComponent},
 
   {path: 'Portfolio/update-item-edu/:id', component: UpdateItemEduComponent},
+
+  {path: 'Portfolio/add-acerca' , component: AcercaAddComponent},
+
+  {path: 'Portfolio/update-acerca/:id', component: AcercaUpdateComponent},
 
   {path: 'login', component: LoginComponent},
 
