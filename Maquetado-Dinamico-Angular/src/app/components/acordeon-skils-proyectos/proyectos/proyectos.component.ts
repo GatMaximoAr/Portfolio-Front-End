@@ -10,6 +10,7 @@ import { ProyectoServiceService } from 'src/app/services/Proyecto/proyecto-servi
 export class ProyectosComponent implements OnInit {
 
   proyectos:Proyecto[] = []
+  edicion: boolean;
 
   constructor(private proyectoService:ProyectoServiceService) { }
 
@@ -17,12 +18,11 @@ export class ProyectosComponent implements OnInit {
     this.getProyectos();
   }
 
-  getProyectos():void {
+   getProyectos():void {
     this.proyectoService.getProyectos()
     .subscribe(resp => {
       this.proyectos = resp;
-      //console.log(resp);
-    })
-  }
+      console.log(resp);
+    }) }
 
 }

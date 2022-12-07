@@ -26,6 +26,9 @@ import { AddItemEduComponent } from './components/educacion/add-item-edu/add-ite
 import { UpdateItemEduComponent } from './components/educacion/update-item-edu/update-item-edu.component';
 import { AcercaAddComponent } from './components/acerca-de/acerca-add/acerca-add.component';
 import { AcercaUpdateComponent } from './components/acerca-de/acerca-update/acerca-update.component';
+import { ItemProyectosComponent } from './components/acordeon-skils-proyectos/proyectos/item-proyectos/item-proyectos.component';
+import { ProyectoAddComponent } from './components/acordeon-skils-proyectos/proyectos/proyecto-add/proyecto-add.component';
+import { ProyectoUpdateComponent } from './components/acordeon-skils-proyectos/proyectos/proyecto-update/proyecto-update.component';
 
 
 
@@ -54,6 +57,9 @@ import { AcercaUpdateComponent } from './components/acerca-de/acerca-update/acer
     UpdateItemEduComponent,
     AcercaAddComponent,
     AcercaUpdateComponent,
+    ItemProyectosComponent,
+    ProyectoAddComponent,
+    ProyectoUpdateComponent,
   ],
   imports: [
     BrowserModule,

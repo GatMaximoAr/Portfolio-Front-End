@@ -1,7 +1,8 @@
-import { imagen_proyecto } from "./imagen_proyecto";
 
 export interface Proyecto {
     id?:number;
-    titulo:String
-    imgs:imagen_proyecto[]
+    titulo:String;
+    imagen:string;
+    vinculo_img:string;
+    sobre_proyecto:string;
 }

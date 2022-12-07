@@ -10,6 +10,8 @@ import { AddItemEduComponent } from './components/educacion/add-item-edu/add-ite
 import { UpdateItemEduComponent } from './components/educacion/update-item-edu/update-item-edu.component';
 import { AcercaAddComponent } from './components/acerca-de/acerca-add/acerca-add.component';
 import { AcercaUpdateComponent } from './components/acerca-de/acerca-update/acerca-update.component';
+import { ProyectoAddComponent } from './components/acordeon-skils-proyectos/proyectos/proyecto-add/proyecto-add.component';
+import { ProyectoUpdateComponent } from './components/acordeon-skils-proyectos/proyectos/proyecto-update/proyecto-update.component';
 
 const routes: Routes = [
   {path: 'Portfolio', component: HomeComponent /*, canActivate: [GuestGuard]*/},
@@ -25,6 +27,10 @@ const routes: Routes = [
   {path: 'Portfolio/add-acerca' , component: AcercaAddComponent},
 
   {path: 'Portfolio/update-acerca/:id', component: AcercaUpdateComponent},
+
+  {path: 'Portfolio/add-proyecto', component: ProyectoAddComponent},
+
+  {path: 'Portfolio/update-proyecto/:id', component:ProyectoUpdateComponent},
 
   {path: 'login', component: LoginComponent},
 
