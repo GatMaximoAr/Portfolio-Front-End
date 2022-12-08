@@ -23,13 +23,13 @@ const httpOptionsPlain = {
 })
 export class AcercaService {   
 
-  private url = "http://localhost:8080/acerca/usuario/traer";
+  private url = "https://deploy-beta.fly.dev/acerca/usuario/traer";
 
-  private url_post = "http://localhost:8080/acerca/usuario/1/crear";
+  private url_post = "https://deploy-beta.fly.dev/acerca/usuario/1/crear";
 
-  private url_put ="http://localhost:8080/acerca/editar"
+  private url_put ="https://deploy-beta.fly.dev/editar"
 
-  private url_delete ="http://localhost:8080/delete/acerca"
+  private url_delete ="https://deploy-beta.fly.dev/delete/acerca"
 
   constructor(private http:HttpClient) { }
 

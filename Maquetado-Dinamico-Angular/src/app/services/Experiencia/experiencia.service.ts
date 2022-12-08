@@ -15,11 +15,11 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ExperienciaService {
-  private url ="http://localhost:8080/relacionxp/traer/"
-  private url1 ="http://localhost:8080/relacioxp/usuario/52"
+  private url ="https://deploy-beta.fly.dev/relacionxp/traer/"
+  private url1 ="https://deploy-beta.fly.dev/relacioxp/usuario/1"
   private url_Users = "" // url users
-  private url_edit = "http://localhost:8080/relacioxp/editar"
-  private url_delete = "http://localhost:8080/experiencia/delete"
+  private url_edit = "https://deploy-beta.fly.dev/relacioxp/editar"
+  private url_delete = "https://deploy-beta.fly.dev/experiencia/delete"
 
   constructor(private http:HttpClient) { }
 
