@@ -15,10 +15,10 @@ const httpOptions = {
 })
 export class ProyectoServiceService {
 
-  private url ="https://deploy-beta.fly.dev/proyecto/traer"
-  private url_post="https://deploy-beta.fly.dev/proyecto/usuario/1/crear"
-  private url_put="https://deploy-beta.fly.dev/proyecto/editar"
-  private url_delete="https://deploy-beta.fly.dev/proyecto/delete"
+  private url ="https://deploy-beta2.fly.dev/proyecto/traer"
+  private url_post="https://deploy-beta2.fly.dev/proyecto/usuario/1/crear"
+  private url_put="https://deploy-beta2.fly.dev/proyecto/editar"
+  private url_delete="https://deploy-beta2.fly.dev/proyecto/delete"
   
 
   constructor(private http:HttpClient) { }

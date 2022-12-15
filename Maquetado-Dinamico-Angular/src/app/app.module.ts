@@ -29,6 +29,7 @@ import { AcercaUpdateComponent } from './components/acerca-de/acerca-update/acer
 import { ItemProyectosComponent } from './components/acordeon-skils-proyectos/proyectos/item-proyectos/item-proyectos.component';
 import { ProyectoAddComponent } from './components/acordeon-skils-proyectos/proyectos/proyecto-add/proyecto-add.component';
 import { ProyectoUpdateComponent } from './components/acordeon-skils-proyectos/proyectos/proyecto-update/proyecto-update.component';
+import { RegistroComponent } from './components/registro/registro.component';
 
 
 
@@ -60,6 +61,7 @@ import { ProyectoUpdateComponent } from './components/acordeon-skils-proyectos/p
     ItemProyectosComponent,
     ProyectoAddComponent,
     ProyectoUpdateComponent,
+    RegistroComponent,
   ],
   imports: [
     BrowserModule,

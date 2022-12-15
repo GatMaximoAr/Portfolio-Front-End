@@ -12,6 +12,7 @@ import { AcercaAddComponent } from './components/acerca-de/acerca-add/acerca-add
 import { AcercaUpdateComponent } from './components/acerca-de/acerca-update/acerca-update.component';
 import { ProyectoAddComponent } from './components/acordeon-skils-proyectos/proyectos/proyecto-add/proyecto-add.component';
 import { ProyectoUpdateComponent } from './components/acordeon-skils-proyectos/proyectos/proyecto-update/proyecto-update.component';
+import { RegistroComponent } from './components/registro/registro.component';
 
 const routes: Routes = [
   {path: 'Portfolio', component: HomeComponent /*, canActivate: [GuestGuard]*/},
@@ -33,6 +34,8 @@ const routes: Routes = [
   {path: 'Portfolio/update-proyecto/:id', component:ProyectoUpdateComponent},
 
   {path: 'login', component: LoginComponent},
+
+  {path: 'singUp', component: RegistroComponent},
 
   {path: '', redirectTo: 'Portfolio', pathMatch: 'full' },
 
