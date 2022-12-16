@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, } from '@angular/core';
 import {Item_exp} from '../../../models/Item'
 import { ExperienciaService } from 'src/app/services/Experiencia/experiencia.service'; 
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/Auth/auth.service';
 import { Subscription } from 'rxjs';
 
 @Component({

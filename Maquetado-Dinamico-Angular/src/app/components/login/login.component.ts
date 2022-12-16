@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/User';
-import { AuthService } from 'src/app/services/auth.service';
-import { ExperienciaService } from 'src/app/services/Experiencia/experiencia.service'; 
+import { Login } from 'src/app/models/LoginUsuario';
+import { AuthService } from 'src/app/services/Auth/auth.service';
+import { TokenService } from 'src/app/services/Auth/token.service';
 
 @Component({
   selector: 'app-login',
@@ -13,22 +13,27 @@ import { ExperienciaService } from 'src/app/services/Experiencia/experiencia.ser
 export class LoginComponent implements OnInit {
   logError: boolean = false
   formularioLogin:FormGroup
-  user:User[] = []
+  loginUsuario:Login
+  islogged:boolean = false;
+  roles:string[] = []
 
   constructor(private authService:AuthService,
-    private route:Router, private __builder:FormBuilder, 
-    private dataService:ExperienciaService) {
-      
-      this.dataService.getUsers().subscribe(resp => this.user = resp) 
+    private route:Router, private __builder:FormBuilder,
+    private tokenService:TokenService) { 
 
       this.formularioLogin = this.__builder.group({
-        userName: ['', Validators.required],
+        nombreUsuario: ['', Validators.required],
         password: ['', Validators.required]
       }
       )
     }
 
   ngOnInit(): void {
+    if(this.tokenService.getToken()) {
+      this.islogged = true
+      this.logError = false
+      this.roles = this.tokenService.getAuthorities()
+    }
   }
 
   cambiarValor() {
@@ -36,19 +41,22 @@ export class LoginComponent implements OnInit {
     this.route.navigate(['/'])
   }
 
-  adminLog(valor:User) {
-    for(let i of this.user) {
-      if (i.userName == valor.userName && i.password == valor.password) {
-        this.authService.admin_Access_Value = true
-        alert("Iniciaste Sesion!")
-        this.route.navigate(['/']) }
-
-        else {
-          this.logError = true
-          
-        }
-    }
+  onLogin(valor:Login):void {
+    console.log(valor);
     
-  }
+    this.authService.singIn(valor)
+    .subscribe(resp => {
+      this.islogged = true
+      this.logError = false
 
+      this.tokenService.setToken(resp.token)
+      this.tokenService.setUserName(resp.nombreUsuario)
+      this.tokenService.setAuthorities(resp.authorities)
+      this.roles = resp.authorities
+    }, err => {err
+      this.islogged = false
+      this.logError = true
+      console.log(err)
+    })
+  }
 }

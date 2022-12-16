@@ -2,7 +2,7 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { Acerca } from 'src/app/models/Acerca';
 import { AcercaService } from '../../services/Acerca-de/acerca.service';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/Auth/auth.service';
 
 @Component({
   selector: 'app-acerca-de',

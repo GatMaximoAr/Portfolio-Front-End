@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Educacion } from 'src/app/models/Educacion';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/Auth/auth.service';
 import { EducacionServiceService } from 'src/app/services/Educacion/educacion-service.service';
 
 
