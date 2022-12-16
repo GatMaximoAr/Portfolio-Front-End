@@ -14,10 +14,10 @@ const httpOptions = {
 })
 export class EducacionServiceService {
 
-  private url_get ="https://deploy-beta2.fly.dev/educacion/traer"
-  private url_post = "https://deploy-beta2.fly.dev/educacion/usuario/1/crear"
-  private url_put = "https://deploy-beta2.fly.dev/educacion/editar"
-  private url_delete = "https://deploy-beta2.fly.dev/educacion/delete"
+  private url_get ="http://localhost:8080/educacion/traer"
+  private url_post = "http://localhost:8080/educacion/usuario/1/crear"
+  private url_put = "http://localhost:8080/educacion/editar"
+  private url_delete = "http://localhost:8080/educacion/delete"
 
   constructor(private http:HttpClient) { }
 

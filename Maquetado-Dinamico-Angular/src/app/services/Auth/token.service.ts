@@ -22,7 +22,7 @@ export class TokenService {
     if(sessionStorage.getItem(TOKEN_KEY)) {
       return sessionStorage.getItem(TOKEN_KEY);
     }
-    return "null"
+    return null
   }
 
   public setUserName(username:string):void {
@@ -34,7 +34,7 @@ export class TokenService {
     if(sessionStorage.getItem(USERNAME_KEY)) {
       return sessionStorage.getItem(USERNAME_KEY);
     }
-    return "null"
+    return null
   }
 
   public setAuthorities(authorities:string[]):void {

@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { interceptorProvider } from './services/Auth/interceptor.service';
 
 
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -30,6 +31,7 @@ import { ItemProyectosComponent } from './components/acordeon-skils-proyectos/pr
 import { ProyectoAddComponent } from './components/acordeon-skils-proyectos/proyectos/proyecto-add/proyecto-add.component';
 import { ProyectoUpdateComponent } from './components/acordeon-skils-proyectos/proyectos/proyecto-update/proyecto-update.component';
 import { RegistroComponent } from './components/registro/registro.component';
+
 
 
 
@@ -69,7 +71,7 @@ import { RegistroComponent } from './components/registro/registro.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [interceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

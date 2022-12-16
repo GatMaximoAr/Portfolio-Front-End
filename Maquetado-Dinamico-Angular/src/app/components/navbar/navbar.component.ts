@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/services/Auth/auth.service';
+import { TokenService } from 'src/app/services/Auth/token.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,23 +10,28 @@ import { AuthService } from 'src/app/services/Auth/auth.service';
 })
 export class NavbarComponent implements OnInit, OnDestroy {
 
-  logeado:boolean
+  isLogged:boolean = false
   sub:Subscription
 
-  constructor(private authService:AuthService, private route:Router) { 
-    this.sub = this.authService.edicion_Access.subscribe(resp => this.logeado = resp)
-  }
+  constructor(private tokenService:TokenService, private route:Router) {}
 
   ngOnInit(): void {
+    if(this.tokenService.getToken()) {
+      this.isLogged = true
+    }else {
+      this.isLogged = false
+    }
+
+    console.log(this.isLogged)
+    console.log(this.tokenService.getToken())
   }
 
-  cambiarValor() {
-    this.authService.admin_Access_Value = !this.logeado
-    this.route.navigate(['/login'])
+  logOut() {
+   this.tokenService.logOut()
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe()
+    
   }
 
 }

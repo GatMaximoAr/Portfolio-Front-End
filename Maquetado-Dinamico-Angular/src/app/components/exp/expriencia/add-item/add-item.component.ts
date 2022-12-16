@@ -78,10 +78,10 @@ export class AddItemComponent implements OnInit {
     .subscribe(data => {
       console.log(data)
     })
-    this.router.navigate(['/portfolio'])
+   /* this.router.navigate(['/portfolio'])
   .then(() => {
     window.location.reload();
-  });
+  });*/
   }
 
   enviarform() {
