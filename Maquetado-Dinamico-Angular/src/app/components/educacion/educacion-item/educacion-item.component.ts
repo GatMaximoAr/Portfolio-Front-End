@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Educacion } from 'src/app/models/Educacion';
+import { TokenService } from 'src/app/services/Auth/token.service';
 
 @Component({
   selector: 'app-educacion-item',
@@ -11,12 +12,23 @@ export class EducacionItemComponent implements OnInit {
   mostrar:boolean = true;
 
   @Input('data') item:Educacion
-  edicion:boolean = true;
+  isAdmin:boolean = false;
+  roles:string[] = []
 
-  constructor() { }
+  constructor(private tokenService:TokenService) { }
 
   ngOnInit(): void {
     //console.log(this.item)
+    this.roles = this.tokenService.getAuthorities()
+    this.getRol()
+  }
+
+  getRol():void {
+    this.roles.forEach(rol => {
+      if(rol === "ROLE_ADMIN") {
+        this.isAdmin = true
+      }
+    })
   }
 
 }

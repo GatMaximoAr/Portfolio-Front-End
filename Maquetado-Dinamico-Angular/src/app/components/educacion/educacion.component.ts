@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Educacion } from 'src/app/models/Educacion';
 import { AuthService } from 'src/app/services/Auth/auth.service';
+import { TokenService } from 'src/app/services/Auth/token.service';
 import { EducacionServiceService } from 'src/app/services/Educacion/educacion-service.service';
 
 
@@ -12,26 +13,33 @@ import { EducacionServiceService } from 'src/app/services/Educacion/educacion-se
 })
 export class EducacionComponent implements OnInit, OnDestroy {
 
-  mostrar:boolean = false
-  edicion:boolean
-  sub:Subscription
+  isAdmin:boolean = false
   subData:Subscription
   formaciones:Educacion[] = []
+  roles:string[] = []
+
 
 /* @ViewChild ('Secundaria') secundaria:ElementRef
 @ViewChild ('ImagenIpem') imgIpen:ElementRef
 @ViewChild ('SecundariaText') secundariaText:ElementRef */
 
-  constructor( private authService:AuthService, private eduService:EducacionServiceService) { 
-      this.sub = this.authService.edicion_Access.subscribe(resp => this.edicion = resp)
-    }
+  constructor( private tokenService:TokenService, private eduService:EducacionServiceService) { }
 
   ngOnInit(): void {
     this.getFormaciones();
+    this.roles = this.tokenService.getAuthorities()
+    this.getRoles()
     //console.log(this.formacion)
   }
 
-  
+  getRoles():void {
+    this.roles.forEach(rol => {
+      if(rol === "ROLE_ADMIN") {
+        this.isAdmin = true
+      }
+    })
+  }
+
 
   getFormaciones():void {
     this.subData = this.eduService.getFormaciones().subscribe(resp => {
@@ -46,7 +54,6 @@ export class EducacionComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe()
     this.subData.unsubscribe()
   }
 }

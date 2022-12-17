@@ -3,6 +3,7 @@ import {Item_exp} from '../../../models/Item'
 import { ExperienciaService } from 'src/app/services/Experiencia/experiencia.service'; 
 import { AuthService } from 'src/app/services/Auth/auth.service';
 import { Subscription } from 'rxjs';
+import { TokenService } from 'src/app/services/Auth/token.service';
 
 @Component({
   selector: 'app-expriencia',
@@ -12,15 +13,12 @@ import { Subscription } from 'rxjs';
 export class ExprienciaComponent implements OnInit, OnDestroy {
 
   Items:Item_exp[] = []
-  edicion:boolean
-  sub:Subscription
+  isAdmin:boolean = false
   subData:Subscription
+  roles:string[] = []
 
   constructor(
-    private dataService:ExperienciaService, private authService:AuthService
-    ) { 
-      this.sub = this.authService.edicion_Access.subscribe(resp => this.edicion = resp)
-    }
+    private dataService:ExperienciaService, private tokenService:TokenService) { }
 
     getItems(){
       this.subData = this.dataService.getItems()
@@ -29,11 +27,20 @@ export class ExprienciaComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getItems()
+    this.roles = this.tokenService.getAuthorities()
+    this.getRoles()
     //console.log(this.Items)
   }
 
+  getRoles():void {
+    this.roles.forEach(rol => {
+      if(rol === "ROLE_ADMIN") {
+        this.isAdmin = true
+      }
+    })
+  }
+
   ngOnDestroy(): void {
-    this.sub.unsubscribe()
     this.subData.unsubscribe()
   }
 

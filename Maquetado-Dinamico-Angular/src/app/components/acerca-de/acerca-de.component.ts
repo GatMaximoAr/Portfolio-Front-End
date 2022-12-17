@@ -3,6 +3,7 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { Acerca } from 'src/app/models/Acerca';
 import { AcercaService } from '../../services/Acerca-de/acerca.service';
 import { AuthService } from 'src/app/services/Auth/auth.service';
+import { TokenService } from 'src/app/services/Auth/token.service';
 
 @Component({
   selector: 'app-acerca-de',
@@ -10,26 +11,26 @@ import { AuthService } from 'src/app/services/Auth/auth.service';
   styleUrls: ['./acerca-de.component.css']
 })
 export class AcercaDeComponent implements OnInit, OnDestroy {
-  @ViewChild ('AcercaDe') acercade:ElementRef
+  //@ViewChild ('AcercaDe') acercade:ElementRef
 
-  edicion:boolean
   sub:Subscription
   acerca:Acerca[] = []
   agrega:BehaviorSubject<boolean> = new BehaviorSubject(true)
+  isAdmin:boolean = false
+  roles:string[] = []
 
   obj:Acerca = {nombre_usuario:"", 
                 apellido_usuario:"", imagen:"", sobre_usuario: "", ocupacion:"", img_portada: ""} 
 
-  constructor(private authService:AuthService, private acercaService:AcercaService)
-     { 
-      this.sub = this.authService.edicion_Access.subscribe(resp => this.edicion = resp)
-
-      
-    }
+  constructor(private acercaService:AcercaService,
+    private tokenService:TokenService)
+     { }
 
   ngOnInit(): void {
     this.getAcerca()
-    console.log(this.acerca.length)
+    //console.log(this.acerca.length)
+    this.roles = this.tokenService.getAuthorities()
+    this.getRol()
     
   }
 
@@ -57,8 +58,15 @@ export class AcercaDeComponent implements OnInit, OnDestroy {
     }
   }
 
+  getRol():void {
+    this.roles.forEach(rol => {
+      if(rol === "ROLE_ADMIN") {
+        this.isAdmin = true
+      }
+    })
+  }
+
   ngOnDestroy(): void {
-    this.sub.unsubscribe()
   }
 
 }

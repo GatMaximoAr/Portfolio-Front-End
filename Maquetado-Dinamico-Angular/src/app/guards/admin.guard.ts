@@ -2,31 +2,38 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/Auth/auth.service';
+import { TokenService } from '../services/Auth/token.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminGuard implements CanActivate {
-  access_admin:boolean
+  realRol:string = 'user'
 
-  constructor(private authService:AuthService, private route:Router) {
-    this.authService.edicion_Access.subscribe(resp => this.access_admin = resp)
+  constructor(private tokenService:TokenService, 
+    private route:Router) {}
     
-  }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     
-      if (this.access_admin){
-        // console.log('admin retorno true')
-        return true
+      const expectedRol = route.data['expectedRol']
+      const roles = this.tokenService.getAuthorities()
+      this.realRol = "user"
+      console.log(this.realRol)
+
+      roles.forEach(rol => {
+        if(rol === "ROLE_ADMIN") {
+          this.realRol = "admin"
+        }
+      });
+
+      if(!this.tokenService.getToken() || expectedRol.indexOf(this.realRol)=== -1) {
+        this.route.navigate(['/'])
+        return false
       }
-        else {
-          // console.log('admin retorno false')
-          return this.route.navigate(['/login'])
-      
-      }
+      return true
   }
   
 }
