@@ -31,6 +31,7 @@ import { ItemProyectosComponent } from './components/acordeon-skils-proyectos/pr
 import { ProyectoAddComponent } from './components/acordeon-skils-proyectos/proyectos/proyecto-add/proyecto-add.component';
 import { ProyectoUpdateComponent } from './components/acordeon-skils-proyectos/proyectos/proyecto-update/proyecto-update.component';
 import { RegistroComponent } from './components/registro/registro.component';
+import { SkillItemComponent } from './components/acordeon-skils-proyectos/skills/skill-item/skill-item.component';
 
 
 
@@ -64,6 +65,7 @@ import { RegistroComponent } from './components/registro/registro.component';
     ProyectoAddComponent,
     ProyectoUpdateComponent,
     RegistroComponent,
+    SkillItemComponent,
   ],
   imports: [
     BrowserModule,

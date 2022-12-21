@@ -40,8 +40,4 @@ export class ExperienciaService {
     const itemUrl = `${this.url_delete}/${id}`
     return this.http.delete<Item_exp>(itemUrl, httpOptions)
   } 
-
-  getUsers():Observable<User[]> {
-    return this.http.get<User[]>(this.url_Users)
-  }
 }
