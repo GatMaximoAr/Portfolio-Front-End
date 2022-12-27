@@ -93,7 +93,9 @@ export class UpdateItemComponent implements OnInit {
     this.dataService.editItem(datos)
     .subscribe(data => {
       console.log(data)
+      window.location.reload();
     })
+    this.goHome()
   }
 
   addItemlist(){
@@ -121,14 +123,11 @@ export class UpdateItemComponent implements OnInit {
   }
 
   deleteItem() {
-    this.dataService.deleteItem(this.item.id!).subscribe(resp => {
+    this.dataService.deleteItem(this.item.id).subscribe(resp => {
       console.log(resp)
+      window.location.reload();
     })
-    this.router.navigate(['/portfolio'])
-  .then(() => {
-    window.location.reload();
-  });
-    
+  this.goHome()
   }
 
   resetForm() {

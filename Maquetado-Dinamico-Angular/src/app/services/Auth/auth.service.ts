@@ -19,27 +19,20 @@ export class AuthService {
 
   private auth_url:string = "http://localhost:8080/auth/" 
   
-  private admin_Edicion:BehaviorSubject<boolean> = new BehaviorSubject(true)
 
   private guest:BehaviorSubject<boolean> = new BehaviorSubject(false)
   
   constructor(private http:HttpClient) { }
 
-  get guest_Access() {
+  get _Access() {
     return this.guest.asObservable()
   }
 
-  set guest_Access_Value(value:boolean) {
+   _Access_Value(value:boolean) {
     this.guest.next(value)
   }
 
-  get edicion_Access() {
-    return this.admin_Edicion.asObservable()
-  }
-
-  set admin_Access_Value(valor:boolean) {
-    this.admin_Edicion.next(valor)
-  }
+ 
 
   public singUp(nuenoUsuario:NuevoUsuario):Observable<any> {
     return this.http.post(this.auth_url + 'singUp', nuenoUsuario, httpOptions)

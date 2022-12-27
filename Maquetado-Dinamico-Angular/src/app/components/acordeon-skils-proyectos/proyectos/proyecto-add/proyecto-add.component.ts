@@ -44,7 +44,9 @@ export class ProyectoAddComponent implements OnInit {
     this.proyectoService.postNewProyecto(proyecto)
     .subscribe(resp => {
       console.log(resp)
+      window.location.reload()
     })
+    this.goHome()
   } 
 
   enviarform() {

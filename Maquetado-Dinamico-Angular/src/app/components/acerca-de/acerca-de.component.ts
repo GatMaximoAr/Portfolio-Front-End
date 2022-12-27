@@ -2,7 +2,6 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { Acerca } from 'src/app/models/Acerca';
 import { AcercaService } from '../../services/Acerca-de/acerca.service';
-import { AuthService } from 'src/app/services/Auth/auth.service';
 import { TokenService } from 'src/app/services/Auth/token.service';
 
 @Component({
@@ -14,7 +13,7 @@ export class AcercaDeComponent implements OnInit, OnDestroy {
   //@ViewChild ('AcercaDe') acercade:ElementRef
 
   sub:Subscription
-  acerca:Acerca[] = []
+  
   agrega:BehaviorSubject<boolean> = new BehaviorSubject(true)
   isAdmin:boolean = false
   roles:string[] = []
@@ -37,28 +36,14 @@ export class AcercaDeComponent implements OnInit, OnDestroy {
   getAcerca():void {
     this.acercaService.getAcerca().
     subscribe(resp => {
-      this.acerca = resp
-      if (this.acerca.length > 0) {
-        this.obj = this.acerca[0]
-        this.agrega.next(false)
-      }
-
-      //console.log(this.obj);
-    }, err => {
+      this.obj = resp
+      console.log(resp)
       this.agrega.next(false)
+    }, err =>{
     })
     
   }
 
-  existData() {
-    if (this.acerca.length != 0) {
-      this.agrega.subscribe(resp => {
-        console.log(resp)
-      })
-
-      console.log(this.agrega)
-    }
-  }
 
   getRol():void {
     this.roles.forEach(rol => {

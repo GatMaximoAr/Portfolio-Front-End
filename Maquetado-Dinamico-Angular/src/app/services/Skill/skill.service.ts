@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Skill, SkillInter } from 'src/app/models/Skill';
+import { TokenService } from '../Auth/token.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -15,19 +16,26 @@ const httpOptions = {
 
 export class SkillService {
 
-  private post_url:string ="http://localhost:8080/usuario/1/skill/crear"
+  private url_post:string ="http://localhost:8080/skill/usuario"
   private get_url:string ="http://localhost:8080/skills/traer"
+  private url_getBy:string ="http://localhost:8080/skills"
   private put_url:string ="http://localhost:8080/skill/"
   private delete_url:string="http://localhost:8080/skill/"
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private tokenService:TokenService) { }
+
+  get user():string {
+    return this.tokenService.getUserName()
+  }
 
   public getSkills():Observable<SkillInter[]> {
-    return this.http.get<SkillInter[]>(this.get_url)
+    const url_get = `${this.url_getBy}/${this.user}/traer`
+    return this.http.get<SkillInter[]>(url_get)
   }
 
   public postSkill(skill:Skill):Observable<string> {
-    return this.http.post<string>(this.post_url, skill, httpOptions)
+    const post_url = `${this.url_post}/${this.user}/crear`
+    return this.http.post<string>(post_url, skill, httpOptions)
   }
 
   public putSkill(skill:SkillInter):Observable<string> {

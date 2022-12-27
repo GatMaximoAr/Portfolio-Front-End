@@ -9,7 +9,6 @@ import { interceptorProvider } from './services/Auth/interceptor.service';
 
 
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { ImagenPortadaComponent } from './components/imagen-portada/imagen-portada.component';
 import { AcercaDeComponent } from './components/acerca-de/acerca-de.component';
 import { ExprienciaComponent } from './components/exp/expriencia/expriencia.component';
 import { AcordeonSkilsProyectosComponent } from './components/acordeon-skils-proyectos/acordeon-skils-proyectos.component';
@@ -43,7 +42,6 @@ import { SkillItemComponent } from './components/acordeon-skils-proyectos/skills
   declarations: [
     AppComponent,
     NavbarComponent,
-    ImagenPortadaComponent,
     AcercaDeComponent,
     ExprienciaComponent,
     AcordeonSkilsProyectosComponent,

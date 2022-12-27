@@ -37,8 +37,7 @@ export class LoginComponent implements OnInit {
   }
 
   cambiarValor() {
-    this.authService.guest_Access_Value = true
-    this.route.navigate(['/'])
+   this.authService._Access_Value(true)
   }
 
   onLogin(valor:Login):void {
@@ -48,6 +47,7 @@ export class LoginComponent implements OnInit {
     .subscribe(resp => {
       this.islogged = true
       this.logError = false
+      this.cambiarValor()
 
       this.tokenService.setToken(resp.token)
       this.tokenService.setUserName(resp.nombreUsuario)

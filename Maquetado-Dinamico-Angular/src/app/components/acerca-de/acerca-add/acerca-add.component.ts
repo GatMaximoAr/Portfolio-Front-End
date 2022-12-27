@@ -49,7 +49,9 @@ export class AcercaAddComponent implements OnInit {
       this.acercaService.postAcerca(acerca)
       .subscribe(resp => {
         console.log(resp)
+        window.location.reload()
       })
+      this.goHome()
     }
     
 

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
+import { AuthService } from 'src/app/services/Auth/auth.service';
 import { TokenService } from 'src/app/services/Auth/token.service';
 
 @Component({
@@ -7,11 +9,19 @@ import { TokenService } from 'src/app/services/Auth/token.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
 
+  sub:Subscription
   isLogged:boolean = false
 
-  constructor(private tokenService:TokenService, private route:Router) {}
+  constructor(private tokenService:TokenService, private route:Router,
+    private authService:AuthService) {
+
+      this.sub = this.authService._Access.subscribe(resp => {
+      this.isLogged = resp
+      })
+    }
+  
 
   ngOnInit(): void {
     if(this.tokenService.getToken()) {
@@ -27,6 +37,11 @@ export class NavbarComponent implements OnInit {
 
   logOut() {
    this.tokenService.logOut()
+   window.location.reload()
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe()
   }
 
 

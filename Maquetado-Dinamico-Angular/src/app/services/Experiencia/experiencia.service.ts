@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Item_exp } from 'src/app/models/Item'; 
 import { User } from 'src/app/models/User'
+import { TokenService } from '../Auth/token.service';
 
 
 const httpOptions = {
@@ -16,19 +17,25 @@ const httpOptions = {
 })
 export class ExperienciaService {
   private url ="http://localhost:8080/relacionxp/traer/"
-  private url1 ="http://localhost:8080/relacioxp/usuario/1"
-  private url_Users = "" // url users
+  private url_get="http://localhost:8080/relacionxp"
+  private url_post ="http://localhost:8080/relacioxp/usuario"
   private url_edit = "http://localhost:8080/relacioxp/editar"
   private url_delete = "http://localhost:8080/experiencia/delete"
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private tokenService:TokenService) { }
+
+  get user():string {
+    return this.tokenService.getUserName()
+  }
 
   getItems():Observable<Item_exp[]> {
-    return this.http.get<Item_exp[]>(this.url)
+    const url_get = `${this.url_get}/${this.user}/traer`
+    return this.http.get<Item_exp[]>(url_get)
   }
 
   postItem(newValorItem:Item_exp):Observable<Item_exp>{
-    return this.http.post<Item_exp>(this.url1, newValorItem ,httpOptions)
+    const post_url = `${this.url_post}/${this.user}`
+    return this.http.post<Item_exp>(post_url, newValorItem ,httpOptions)
   }
 
   editItem(itemtoEdit:Item_exp):Observable<Item_exp> {

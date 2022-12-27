@@ -52,7 +52,9 @@ export class AcercaUpdateComponent implements OnInit {
       this.acercaService.putAcerca(acerca)
       .subscribe(resp => {
         console.log(resp)
+        window.location.reload()
       })
+      this.goHome()
     }
     
 
@@ -70,7 +72,10 @@ export class AcercaUpdateComponent implements OnInit {
     this.acercaService.deleteAcerca(this.indice)
     .subscribe(resp => {
       console.log(resp)
+      window.location.reload()
     })
+
+    this.goHome()
     }
   
   goHome() {

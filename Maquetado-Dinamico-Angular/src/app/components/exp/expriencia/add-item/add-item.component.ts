@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Item_exp } from 'src/app/models/Item'; 
-import { ItemList } from 'src/app/models/ItemList';
 import { ExperienciaService } from 'src/app/services/Experiencia/experiencia.service'; 
 
 @Component({
@@ -77,11 +76,13 @@ export class AddItemComponent implements OnInit {
     this.dataService.postItem(parametro)
     .subscribe(data => {
       console.log(data)
+      window.location.reload();
     })
    /* this.router.navigate(['/portfolio'])
   .then(() => {
     window.location.reload();
   });*/
+  this.goHome()
   }
 
   enviarform() {
@@ -90,7 +91,7 @@ export class AddItemComponent implements OnInit {
   }
 
   goHome():void {
-    this.router.navigate(['/Portfolio'])
+    this.router.navigate([''])
   }
 
   resetForm() {

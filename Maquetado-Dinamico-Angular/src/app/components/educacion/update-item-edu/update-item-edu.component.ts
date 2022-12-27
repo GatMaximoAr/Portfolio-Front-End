@@ -42,13 +42,9 @@ export class UpdateItemEduComponent implements OnInit {
   }
 
   getItem():void {
-    this.eduService.getFormaciones()
+    this.eduService.getById(this.indice)
     .subscribe(resp => {
-      resp.find(call => {
-        if(call.id == this.indice) {
-          this.item = call;
-        }
-      })
+      this.item = resp
     })
   }
 
@@ -56,6 +52,8 @@ export class UpdateItemEduComponent implements OnInit {
     this.eduService.putFormacion(formacion)
     .subscribe(resp => {
       console.log(resp)
+      window.location.reload()
+      this.goHome()
     })
   }
 
@@ -79,8 +77,10 @@ export class UpdateItemEduComponent implements OnInit {
       this.eduService.deleteFormacion(this.indice)
       .subscribe(resp => {
         console.log(resp)
+        window.location.reload()
       })
-      this.router.navigate([''])
+      
+      this.goHome()
     }
     goHome() {
       this.router.navigate([''])

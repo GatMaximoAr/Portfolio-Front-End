@@ -40,16 +40,9 @@ export class ProyectoUpdateComponent implements OnInit {
   }
 
   getItem(): void {
-    this.proyectoService.getProyectos()
+    this.proyectoService.getById(this.indice)
     .subscribe(resp => {
-      
-      let respaldo:Proyecto[] = resp
-      
-      for (let proyecto of respaldo) {
-        if (proyecto.id == this.indice) {
-          this.item = proyecto
-        }
-      }
+      this.item = resp
     })
   }
 
@@ -69,14 +62,18 @@ export class ProyectoUpdateComponent implements OnInit {
     this.proyectoService.putProyecto(proyecto)
     .subscribe(resp => {
       console.log(resp)
+      window.location.reload()
     })
+    this.goHome()
   }
   
   deleteItem() {
     this.proyectoService.deleteProyecto(this.indice)
     .subscribe(resp => {
       console.log(resp)
+      window.location.reload()
     })
+    this.goHome()
     }
 
   enviarform() {
