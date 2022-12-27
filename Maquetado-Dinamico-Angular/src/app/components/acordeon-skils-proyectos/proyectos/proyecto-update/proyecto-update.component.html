@@ -78,7 +78,7 @@
                     
                     <div class="mb-3">
                         <label for="Imagen educacion" class="form-label">Imagen de proyecto</label>
-                        <input type="file" class="form-control" id="Imagen" placeholder="Imagen" formControlName="imagen">
+                        <input type="file" class="form-control" id="Imagen" (change)="datosImg($event)" formControlName="imagen">
                     </div>
 
                     <div class="mb-3">

@@ -39,7 +39,7 @@ export class SkillItemComponent implements OnInit {
     //console.log(this.cssBoostrap)
     this.roles = this.tokenService.getAuthorities()
     this.getRol()
-    console.log(this.isAdmin)
+    //console.log(this.isAdmin)
 
   }
 

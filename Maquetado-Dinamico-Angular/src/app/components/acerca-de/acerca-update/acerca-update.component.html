@@ -45,7 +45,7 @@
 
                     <div class="mb-3 form-group">
                         <label for="img_perfil" class="form-label">Selecione imagen de perfil</label>
-                        <input type="file" class="form-control" id="apellido" placeholder="Ingrese imagen" formControlName="imagen">
+                        <input type="file" class="form-control" id="apellido" (change)="capturar_img_perfil($event)" formControlName="imagen">
                     </div>
 
                     <div class="mb-3 form-group">
@@ -60,7 +60,7 @@
 
                     <div class="mb-3 form-group">
                         <label for="img_portada" class="form-label">Selecione imagen de portada</label>
-                        <input type="file" class="form-control" id="portada" placeholder="Ingrese imagen" formControlName="img_portada">
+                        <input type="file" class="form-control" id="portada" (change)="capturar_img_forndo($event)" formControlName="img_portada">
                     </div>
 
                     <button [disabled]="formularioAcercaDe.invalid" type="submit" class="btn btn-primary mt-5 mb-3 ">

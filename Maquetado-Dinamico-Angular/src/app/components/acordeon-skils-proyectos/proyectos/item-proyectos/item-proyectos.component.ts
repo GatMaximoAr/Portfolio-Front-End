@@ -19,6 +19,7 @@ export class ItemProyectosComponent implements OnInit {
   ngOnInit(): void {
     this.roles = this.tokenService.getAuthorities()
     this.getRol()
+    //console.log(this.item)
   }
 
   getRol():void {

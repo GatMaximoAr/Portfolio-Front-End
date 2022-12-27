@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { Router } from '@angular/router';
 import { Item_exp } from 'src/app/models/Item'; 
 import { ExperienciaService } from 'src/app/services/Experiencia/experiencia.service'; 
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-add-item',
@@ -12,13 +13,13 @@ import { ExperienciaService } from 'src/app/services/Experiencia/experiencia.ser
 export class AddItemComponent implements OnInit {
 
   formularioItemXp:FormGroup
-  valorImg: string | ArrayBuffer;
+  valorImg: any;
   formularioEnviado:boolean = false
   previewEnvio:Item_exp
 
   constructor(private _builder:FormBuilder,
     private dataService:ExperienciaService,
-    private router:Router) { 
+    private router:Router, private storage:StorageService) { 
 
       this.formularioItemXp = this._builder.group({
         img_experiencia: ['', Validators.required],
@@ -39,7 +40,7 @@ export class AddItemComponent implements OnInit {
   onSubmit(valor:Item_exp){
     //valor.img_experiencia = this.valorImg
     this.previewEnvio = valor
-    this.previewEnvio.img_experiencia = "https://www.snau.es/blog/wp-content/uploads/2019/03/cachorro-1.jpg"
+    this.previewEnvio.img_experiencia = this.valorImg
     console.log(this.previewEnvio)
     this.formularioEnviado = !this.formularioEnviado
     
@@ -53,14 +54,14 @@ export class AddItemComponent implements OnInit {
     return this.formularioItemXp.get('actividad') as FormArray;
   }
 
-   datosImg(event:Event): void {
-    const target = event.target as HTMLInputElement;
-    const file = target.files![0];
-    let filereader = new FileReader();
-    filereader.readAsDataURL(file);
-      filereader.addEventListener('load', (e)=>{
-        this.valorImg = e.target!.result!
-        })
+   datosImg(event:any): void {
+    let imagen = event.target.files[0]
+    let reader = new FileReader()
+    reader.readAsDataURL(imagen)
+
+    reader.onloadend = () => {
+      this.valorImg = reader.result
+    }
   }
  
   addItemlist(){
@@ -86,7 +87,13 @@ export class AddItemComponent implements OnInit {
   }
 
   enviarform() {
-    this.postItem(this.previewEnvio)
+
+    this.storage.subirImagen(this.valorImg, "exp_img", "experiencias/").then(resp => {
+      this.previewEnvio.img_experiencia = resp
+      this.postItem(this.previewEnvio)
+    })
+
+    //this.postItem(this.previewEnvio)
     //this.router.navigate([''])
   }
 

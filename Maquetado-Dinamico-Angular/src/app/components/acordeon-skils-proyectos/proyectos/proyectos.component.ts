@@ -26,7 +26,7 @@ export class ProyectosComponent implements OnInit {
     this.proyectoService.getProyectos()
     .subscribe(resp => {
       this.proyectos = resp;
-      console.log(resp);
+      //console.log(resp);
     }) }
 
     getRoles():void {

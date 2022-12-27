@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Proyecto } from 'src/app/models/Proyecto';
 import { ProyectoServiceService } from 'src/app/services/Proyecto/proyecto-service.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-proyecto-update',
@@ -22,9 +23,10 @@ export class ProyectoUpdateComponent implements OnInit {
   }
   indice:number
   previewEnvio:Proyecto
+  valorImg:any
 
   constructor(private _builder:FormBuilder, private proyectoService:ProyectoServiceService,
-    private router:Router, private route:ActivatedRoute) { 
+    private router:Router, private route:ActivatedRoute, private storage:StorageService) { 
 
       this.formularioItemPro = this._builder.group({
         titulo: ['', [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
@@ -46,10 +48,20 @@ export class ProyectoUpdateComponent implements OnInit {
     })
   }
 
+  datosImg(event:any): void {
+    let imagen = event.target.files[0]
+    let reader = new FileReader()
+    reader.readAsDataURL(imagen)
+
+    reader.onloadend = () => {
+      this.valorImg = reader.result
+    }
+  }
+
   onSubmit(valor:Proyecto):void {
     this.previewEnvio = valor;
     this.previewEnvio.id = this.indice
-    this.previewEnvio.imagen = "https://i.ytimg.com/vi/KCnyluZDbBk/maxresdefault.jpg"
+    this.previewEnvio.imagen = this.valorImg
     this.formularioEnviado = !this.formularioEnviado;
   }
 
@@ -77,9 +89,16 @@ export class ProyectoUpdateComponent implements OnInit {
     }
 
   enviarform() {
-    this.putItem(this.previewEnvio)
+
+    this.storage.subirImagen(this.valorImg, "proyecto_img", "proyectos/")
+    .then(img_url => {
+      this.previewEnvio.imagen = img_url
+      this.putItem(this.previewEnvio)
+      
+    })
+
     //this.router.navigate([''])
-    console.log(this.previewEnvio)
+    //console.log(this.previewEnvio)
   }
 
   goHome() {

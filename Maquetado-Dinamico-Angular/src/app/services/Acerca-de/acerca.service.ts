@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Acerca } from '../../models/Acerca';
 import { TokenService } from '../Auth/token.service';
+import { StorageService } from '../storage.service';
 
 
 const httpOptions = {
@@ -34,7 +35,10 @@ export class AcercaService {
 
   private url_get1 = "http://localhost:8080/acerca"
 
-  constructor(private http:HttpClient, private tokenService:TokenService) { }
+  private path = "acerca-usuario/"
+
+  constructor(private http:HttpClient, private tokenService:TokenService,
+    private storage:StorageService) { }
 
   get user():string {
     return this.tokenService.getUserName()
@@ -64,4 +68,5 @@ export class AcercaService {
     const item_url = `${this.url_delete}/${id}`
     return this.http.delete<Acerca>(item_url, httpOptions)
   }
+
 }

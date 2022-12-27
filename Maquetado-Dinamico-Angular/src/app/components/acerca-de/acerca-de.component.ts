@@ -37,7 +37,7 @@ export class AcercaDeComponent implements OnInit, OnDestroy {
     this.acercaService.getAcerca().
     subscribe(resp => {
       this.obj = resp
-      console.log(resp)
+      //console.log(resp)
       this.agrega.next(false)
     }, err =>{
     })

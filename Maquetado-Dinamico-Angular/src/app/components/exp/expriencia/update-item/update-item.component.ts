@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ExperienciaService } from 'src/app/services/Experiencia/experiencia.service';
+import { StorageService } from 'src/app/services/storage.service';
 import { Item_exp } from '../../../../models/Item';
 
 @Component({
@@ -20,7 +21,7 @@ export class UpdateItemComponent implements OnInit {
   
   formularioItemXp:FormGroup;
   
-  foto:string
+  valorImg:any
   previewEnvio:Item_exp
   
   formularioEnviado:boolean = false
@@ -29,7 +30,7 @@ export class UpdateItemComponent implements OnInit {
   constructor(private dataService:ExperienciaService,
     private route:ActivatedRoute,
     private _builder:FormBuilder,
-    private router:Router) { 
+    private router:Router, private storage:StorageService) { 
 
       this.formularioItemXp = this._builder.group({
         img_experiencia: ['', Validators.required],
@@ -74,19 +75,19 @@ export class UpdateItemComponent implements OnInit {
   onSubmit(valor:Item_exp){
    // valor.img_experiencia = this.valorImg
     this.previewEnvio = valor
+    this.previewEnvio.img_experiencia = this.valorImg
+    this.previewEnvio.id = this.indice
     this.formularioEnviado = !this.formularioEnviado
   } 
 
-  datosImg(event:Event): void {
-    const target = event.target as HTMLInputElement;
-    const file = target.files![0];
-    console.log(file.name.toString())
-    let filereader = new FileReader();
-    filereader.readAsDataURL(file);
-      filereader.addEventListener('load', (e)=>{
-        //this.valorImg = e.target!.result!
-        this.foto = e.target!.result?.toString()!
-        })
+  datosImg(event:any): void {
+    let imagen = event.target.files[0]
+    let reader = new FileReader()
+    reader.readAsDataURL(imagen)
+
+    reader.onloadend = () => {
+      this.valorImg = reader.result
+    }
   }
 
   putItem(datos:Item_exp){
@@ -113,13 +114,15 @@ export class UpdateItemComponent implements OnInit {
   }
 
   enviarform(){
-    this.item.img_experiencia = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO4__ElLqeg5sCJ2InBYVJxXw6kv-iM98eZlRXxtAD90glfNfDOX1gK1fik2ExGoMktrY&usqp=CAU"
-    this.item.img_href = this.previewEnvio.img_href
-    this.item.sobre_experiencia = this.previewEnvio.sobre_experiencia
-    this.item.actividad = this.previewEnvio.actividad
-    this.putItem(this.item)
+
+    this.storage.subirImagen(this.valorImg, "exp_img", "experiencias/").then(resp => {
+      this.previewEnvio.img_experiencia = resp
+      this.putItem(this.previewEnvio)
+    })
+
+    //this.putItem(this.item)
     //this.router.navigate([''])
-    console.log(this.item)
+    //console.log(this.item)
   }
 
   deleteItem() {

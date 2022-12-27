@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { interceptorProvider } from './services/Auth/interceptor.service';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+
 
 
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -69,7 +72,9 @@ import { SkillItemComponent } from './components/acordeon-skils-proyectos/skills
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireDatabaseModule,
+    AngularFireStorageModule
   ],
   providers: [interceptorProvider],
   bootstrap: [AppComponent]

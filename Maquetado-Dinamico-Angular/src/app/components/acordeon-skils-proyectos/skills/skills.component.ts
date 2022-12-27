@@ -36,7 +36,7 @@ export class SkillsComponent implements OnInit {
   getSkills():void {
     this.skillService.getSkills()
     .subscribe(resp => {
-      console.log(resp)
+      //console.log(resp)
       this.items = resp
     })
   }
@@ -52,7 +52,7 @@ export class SkillsComponent implements OnInit {
   post(skill:Skill) {
     this.skillService.postSkill(skill)
     .subscribe(resp => {
-      console.log(resp)
+      //console.log(resp)
       window.location.reload()
     },err => {
       console.log(err)
@@ -60,7 +60,7 @@ export class SkillsComponent implements OnInit {
   }
 
   onSubmit(valor:Skill):void {
-    console.log(valor)
+    //console.log(valor)
     this.post(valor)
   }
 

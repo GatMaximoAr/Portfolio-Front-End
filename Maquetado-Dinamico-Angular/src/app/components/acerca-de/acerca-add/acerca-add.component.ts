@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AcercaService } from 'src/app/services/Acerca-de/acerca.service';
+import { StorageService } from 'src/app/services/storage.service';
 import {Acerca} from '../../../models/Acerca';
 
 @Component({
@@ -15,9 +16,11 @@ export class AcercaAddComponent implements OnInit {
   formularioAcercaDe: FormGroup;
   formularioEnviado:boolean = false
   previewEnvio:Acerca
+  img_perfil: any;
+  img_fondo: any;
 
   constructor(private _builder:FormBuilder, private acercaService:AcercaService,
-    private router:Router) { 
+    private router:Router, private storage:StorageService) { 
     
     this.formularioAcercaDe = this._builder.group({
       nombre_usuario: ['', [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
@@ -40,9 +43,29 @@ export class AcercaAddComponent implements OnInit {
   onSubmit(valor: Acerca) {
     console.log(valor)
     this.previewEnvio = valor
-    this.previewEnvio.imagen = "./assets/ImgPerfil/Perfil.jpeg"
-    this.previewEnvio.img_portada = "./assets/ImgFondo/ImgFondo1.jpg"
+    this.previewEnvio.imagen = this.img_perfil
+    this.previewEnvio.img_portada = this.img_fondo
     this.formularioEnviado = !this.formularioEnviado
+    }
+
+    capturar_img_perfil(event:any) {
+      let imagen = event.target.files[0]
+      let reader = new FileReader()
+      reader.readAsDataURL(imagen)
+      reader.onloadend = () => {
+        this.img_perfil = reader.result!
+        console.log(this.img_perfil)
+      }
+    }
+  
+    capturar_img_forndo(event:any) {
+      let imagen = event.target.files[0]
+      let reader = new FileReader()
+      reader.readAsDataURL(imagen)
+      reader.onloadend = () => {
+        //console.log(reader.result)
+        this.img_fondo = reader.result!
+      }
     }
 
     postAcerca(acerca:Acerca) {
@@ -62,7 +85,17 @@ export class AcercaAddComponent implements OnInit {
   }
 
   enviarform() {
-    this.postAcerca(this.previewEnvio)
+    this.storage.subirImagen(this.img_perfil, "perfil", "acerca-de/")
+    .then(url_perfil => {
+      this.previewEnvio.imagen = url_perfil
+      this.storage.subirImagen(this.img_fondo, "fondo", "acerca-de/").then(url_fondo => {
+        this.previewEnvio.img_portada = url_fondo
+
+        this.postAcerca(this.previewEnvio)
+      })
+    })
+    
+    //this.postAcerca(this.previewEnvio)
       
   }
   

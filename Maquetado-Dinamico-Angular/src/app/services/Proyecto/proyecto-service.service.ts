@@ -18,7 +18,7 @@ export class ProyectoServiceService {
 
   private url_get ="http://localhost:8080/proyecto/traer"
   private url_getBy="http://localhost:8080/proyectos"
-  private url_get_one ="http://localhost:8080/proyectos"
+  private url_get_one ="http://localhost:8080/proyecto"
   private url_post="http://localhost:8080/proyecto/usuario"
   private url_put="http://localhost:8080/proyecto/editar"
   private url_delete="http://localhost:8080/proyecto/delete"
