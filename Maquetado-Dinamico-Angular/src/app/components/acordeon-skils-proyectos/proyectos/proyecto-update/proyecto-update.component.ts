@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Proyecto } from 'src/app/models/Proyecto';
+import { TokenService } from 'src/app/services/Auth/token.service';
 import { ProyectoServiceService } from 'src/app/services/Proyecto/proyecto-service.service';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -14,6 +15,7 @@ export class ProyectoUpdateComponent implements OnInit {
 
 
   formularioItemPro:FormGroup
+  envio:boolean = false
   formularioEnviado:boolean = false
   item:Proyecto ={
     titulo:"",
@@ -26,7 +28,8 @@ export class ProyectoUpdateComponent implements OnInit {
   valorImg:any
 
   constructor(private _builder:FormBuilder, private proyectoService:ProyectoServiceService,
-    private router:Router, private route:ActivatedRoute, private storage:StorageService) { 
+    private router:Router, private route:ActivatedRoute, private storage:StorageService,
+    private tokenService:TokenService) { 
 
       this.formularioItemPro = this._builder.group({
         titulo: ['', [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
@@ -89,7 +92,7 @@ export class ProyectoUpdateComponent implements OnInit {
     }
 
   enviarform() {
-
+    this.envio = !this.envio
     this.storage.subirImagen(this.valorImg, "proyecto_img", "proyectos/")
     .then(img_url => {
       this.previewEnvio.imagen = img_url
@@ -102,7 +105,7 @@ export class ProyectoUpdateComponent implements OnInit {
   }
 
   goHome() {
-    this.router.navigate([''])
+    this.router.navigate([`/portfolio/${this.tokenService.getUserName()}`]);
   }
 
 }

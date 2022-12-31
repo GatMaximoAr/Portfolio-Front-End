@@ -3,6 +3,7 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { Acerca } from 'src/app/models/Acerca';
 import { AcercaService } from '../../services/Acerca-de/acerca.service';
 import { TokenService } from 'src/app/services/Auth/token.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-acerca-de',
@@ -22,8 +23,12 @@ export class AcercaDeComponent implements OnInit, OnDestroy {
                 apellido_usuario:"", imagen:"", sobre_usuario: "", ocupacion:"", img_portada: ""} 
 
   constructor(private acercaService:AcercaService,
-    private tokenService:TokenService)
-     { }
+    private tokenService:TokenService, private storage:StorageService)
+     { 
+      this.sub = this.storage._Reload.subscribe(() => {
+        this.getAcerca()
+      })
+     }
 
   ngOnInit(): void {
     this.getAcerca()
@@ -54,6 +59,7 @@ export class AcercaDeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.sub.unsubscribe()
   }
 
 }

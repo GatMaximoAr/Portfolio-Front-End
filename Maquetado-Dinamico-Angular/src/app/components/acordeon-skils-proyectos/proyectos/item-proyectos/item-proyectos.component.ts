@@ -11,7 +11,7 @@ export class ItemProyectosComponent implements OnInit {
   
   isAdmin:boolean = false
   roles:string[] = []
-  
+
   @Input('data') item:Proyecto
 
   constructor(private tokenService:TokenService) { }

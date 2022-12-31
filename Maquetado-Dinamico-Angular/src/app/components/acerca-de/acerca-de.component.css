@@ -22,6 +22,7 @@
     position: relative;
     margin: auto;
     border-radius: 10%;
+    pointer-events: none;
 }
 
 button.hover-Green:hover{

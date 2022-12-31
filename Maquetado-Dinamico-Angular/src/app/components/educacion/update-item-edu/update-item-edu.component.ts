@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Educacion } from 'src/app/models/Educacion';
+import { TokenService } from 'src/app/services/Auth/token.service';
 import { EducacionServiceService } from 'src/app/services/Educacion/educacion-service.service';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -21,6 +22,7 @@ export class UpdateItemEduComponent implements OnInit {
   }
 
   formularioItemEdu:FormGroup
+  envio:boolean = false
   formularioEnviado:boolean = false
   previewEnvio:Educacion
   valorImg:any
@@ -28,7 +30,8 @@ export class UpdateItemEduComponent implements OnInit {
 
 
   constructor(private _builder:FormBuilder, private eduService:EducacionServiceService,
-    private router:Router, private route:ActivatedRoute, private storage:StorageService) { 
+    private router:Router, private route:ActivatedRoute, private storage:StorageService,
+    private tokenService:TokenService) { 
 
     this.formularioItemEdu = this._builder.group({
       titulo_des: ['', [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
@@ -70,7 +73,7 @@ export class UpdateItemEduComponent implements OnInit {
   }
 
     enviarform() {
-
+      this.envio = !this.envio
       this.storage.subirImagen(this.valorImg, "formacion_img", "formaciones/")
       .then(url_img => {
         this.previewEnvio.imagen = url_img
@@ -101,8 +104,9 @@ export class UpdateItemEduComponent implements OnInit {
       
       this.goHome()
     }
+
     goHome() {
-      this.router.navigate([''])
-    }
+    this.router.navigate([`/portfolio/${this.tokenService.getUserName()}`]);
+  }
 
 }

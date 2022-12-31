@@ -1,26 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Proyecto } from 'src/app/models/Proyecto';
 import { TokenService } from 'src/app/services/Auth/token.service';
 import { ProyectoServiceService } from 'src/app/services/Proyecto/proyecto-service.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-proyectos',
   templateUrl: './proyectos.component.html',
   styleUrls: ['./proyectos.component.css']
 })
-export class ProyectosComponent implements OnInit {
+export class ProyectosComponent implements OnInit, OnDestroy {
 
   proyectos:Proyecto[] = []
   isAdmin: boolean = false
   roles:string[]
+  user:string 
+  sub:Subscription
 
-  constructor(private proyectoService:ProyectoServiceService, private tokenService:TokenService) { }
+  constructor(private proyectoService:ProyectoServiceService, private tokenService:TokenService,
+    private storage:StorageService) {
+
+      this.sub = this.storage._Reload.subscribe(() =>{
+        this.getProyectos()
+      })
+    }
+  
 
   ngOnInit(): void {
     this.getProyectos();
     this.roles = this.tokenService.getAuthorities()
     this.getRoles()
-  }
+    }
 
    getProyectos():void {
     this.proyectoService.getProyectos()
@@ -35,6 +46,10 @@ export class ProyectosComponent implements OnInit {
           this.isAdmin = true
         }
       })
+    }
+
+    ngOnDestroy(): void {
+      this.sub.unsubscribe()
     }
 
 }

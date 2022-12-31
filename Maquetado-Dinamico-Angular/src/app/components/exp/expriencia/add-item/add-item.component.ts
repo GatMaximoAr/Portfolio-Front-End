@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Item_exp } from 'src/app/models/Item'; 
+import { TokenService } from 'src/app/services/Auth/token.service';
 import { ExperienciaService } from 'src/app/services/Experiencia/experiencia.service'; 
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -15,10 +16,11 @@ export class AddItemComponent implements OnInit {
   formularioItemXp:FormGroup
   valorImg: any;
   formularioEnviado:boolean = false
+  envio:boolean = false
   previewEnvio:Item_exp
 
   constructor(private _builder:FormBuilder,
-    private dataService:ExperienciaService,
+    private dataService:ExperienciaService, private tokenService:TokenService,
     private router:Router, private storage:StorageService) { 
 
       this.formularioItemXp = this._builder.group({
@@ -87,7 +89,7 @@ export class AddItemComponent implements OnInit {
   }
 
   enviarform() {
-
+    this.envio = !this.envio
     this.storage.subirImagen(this.valorImg, "exp_img", "experiencias/").then(resp => {
       this.previewEnvio.img_experiencia = resp
       this.postItem(this.previewEnvio)
@@ -97,8 +99,8 @@ export class AddItemComponent implements OnInit {
     //this.router.navigate([''])
   }
 
-  goHome():void {
-    this.router.navigate([''])
+  goHome() {
+    this.router.navigate([`/portfolio/${this.tokenService.getUserName()}`]);
   }
 
   resetForm() {

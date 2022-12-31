@@ -76,11 +76,11 @@
                         <label for="colFormLabel" class="col-sm-2 col-form-label">
                             <strong>Valor de Lista</strong>
                                 <span>
-                                    <button type="button" class="btn btn-danger ms-2" (click)="deleteItemList(i)">x</button> 
+                                    <button [disabled]="formularioItemXp.invalid" type="button" class="btn btn-danger ms-2" (click)="deleteItemList(i)">x</button> 
                                 </span>
                         </label>
                         <div class="col-sm-10">
-                            <input type="text" formControlName= "{{i}}"  class="form-control mb-3" placeholder="Completa este campo de lista y agrega mas, de lo contrario, Eliminalo">
+                            <input type="text" formControlName= "{{i}}"  class="form-control mb-3">
                         </div>
                     </ng-container>
                     <div>
@@ -129,14 +129,22 @@
                 </ul>
             </div>
         </div>
-        <div class="d-flex mt-5 flex-row justify-content-center">
-            <div>
+        <div class="d-flex mt-5 mb-3 flex-row justify-content-center">
+            <div *ngIf="!envio; else loading">
                 <button class="btn btn-success mx-2" (click)="enviarform()">
                     Enviar
                 </button>
             </div>
+
+            <ng-template #loading>
+                <button class="btn btn-primary" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    <span class="sr-only">Loading...</span>
+                  </button>
+            </ng-template>
+
             <div>
-                <button class="btn btn-danger mx-2" (click)="resetForm()">
+                <button [disabled]="envio" class="btn btn-danger mx-2" (click)="resetForm()">
                     Deshacer
                 </button>
             </div>

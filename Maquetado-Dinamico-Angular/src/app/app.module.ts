@@ -34,6 +34,8 @@ import { ProyectoAddComponent } from './components/acordeon-skils-proyectos/proy
 import { ProyectoUpdateComponent } from './components/acordeon-skils-proyectos/proyectos/proyecto-update/proyecto-update.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { SkillItemComponent } from './components/acordeon-skils-proyectos/skills/skill-item/skill-item.component';
+import { UserComponent } from './components/user/user/user.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 
@@ -67,6 +69,8 @@ import { SkillItemComponent } from './components/acordeon-skils-proyectos/skills
     ProyectoUpdateComponent,
     RegistroComponent,
     SkillItemComponent,
+    UserComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,7 +78,7 @@ import { SkillItemComponent } from './components/acordeon-skils-proyectos/skills
     HttpClientModule,
     ReactiveFormsModule,
     AngularFireDatabaseModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
   ],
   providers: [interceptorProvider],
   bootstrap: [AppComponent]

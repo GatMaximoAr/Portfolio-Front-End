@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AcercaService } from 'src/app/services/Acerca-de/acerca.service';
+import { TokenService } from 'src/app/services/Auth/token.service';
 import { StorageService } from 'src/app/services/storage.service';
 import {Acerca} from '../../../models/Acerca';
 
@@ -14,13 +15,14 @@ export class AcercaAddComponent implements OnInit {
 
 
   formularioAcercaDe: FormGroup;
+  envio:boolean = false
   formularioEnviado:boolean = false
   previewEnvio:Acerca
   img_perfil: any;
   img_fondo: any;
 
   constructor(private _builder:FormBuilder, private acercaService:AcercaService,
-    private router:Router, private storage:StorageService) { 
+    private router:Router, private storage:StorageService, private tokenService:TokenService) { 
     
     this.formularioAcercaDe = this._builder.group({
       nombre_usuario: ['', [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
@@ -85,6 +87,7 @@ export class AcercaAddComponent implements OnInit {
   }
 
   enviarform() {
+    this.envio = !this.envio
     this.storage.subirImagen(this.img_perfil, "perfil", "acerca-de/")
     .then(url_perfil => {
       this.previewEnvio.imagen = url_perfil
@@ -100,7 +103,6 @@ export class AcercaAddComponent implements OnInit {
   }
   
   goHome() {
-    this.router.navigate([''])
-        
+    this.router.navigate([`/portfolio/${this.tokenService.getUserName()}`]);
   }
 }

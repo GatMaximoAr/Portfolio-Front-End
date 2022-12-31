@@ -17,7 +17,8 @@ const httpOptions = {
 })
 export class AuthService {
 
-  private auth_url:string = "http://localhost:8080/auth/" 
+  private auth_url:string = "http://localhost:8080/auth/"
+  private exist_url:string = "http://localhost:8080/auth/usuario/exist"
   
 
   private guest:BehaviorSubject<boolean> = new BehaviorSubject(false)
@@ -32,7 +33,10 @@ export class AuthService {
     this.guest.next(value)
   }
 
- 
+  public existUser(usuario:string):Observable<boolean> {
+    const url_usuario = `${this.exist_url}/${usuario}`
+    return this.http.get<boolean>(url_usuario)
+  }
 
   public singUp(nuenoUsuario:NuevoUsuario):Observable<any> {
     return this.http.post(this.auth_url + 'singUp', nuenoUsuario, httpOptions)

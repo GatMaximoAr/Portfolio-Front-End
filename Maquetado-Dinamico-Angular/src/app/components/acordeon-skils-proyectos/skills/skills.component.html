@@ -63,13 +63,25 @@
                     <input type="number" max="100" min="1" class="form-control" id="porcentaje" placeholder="porcentaje" formControlName="porcentaje">
                   </div>
                   
-                  <button [disabled]="formularioSkill.invalid" type="submit" class="btn btn-primary mt-5 mb-3">
-                    Enviar 
-                </button>
+                  <div *ngIf="!envio else loading">
+                    <button [disabled]="formularioSkill.invalid" type="submit" class="btn btn-primary mt-5 mb-3">
+                      Enviar 
+                  </button>
+                  </div>
+
+                  <ng-template #loading>
+                    <button class="btn btn-primary" type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        <span class="sr-only">Loading...</span>
+                      </button>
+                    </ng-template>
           
-                <button type="button" class="btn btn-danger" (click)="switchValue()">
-                  Cancelar
-                </button>
+                  <div>
+                    <button [disabled]="envio" type="button" class="btn btn-danger" (click)="switchValue()">
+                    Cancelar
+                  </button>
+                </div>
+
                 </form>
               </div>
 

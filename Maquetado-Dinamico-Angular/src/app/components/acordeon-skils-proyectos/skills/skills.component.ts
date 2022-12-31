@@ -1,24 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { Skill, SkillInter } from 'src/app/models/Skill';
 import { TokenService } from 'src/app/services/Auth/token.service';
 import { SkillService } from 'src/app/services/Skill/skill.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-skills',
   templateUrl: './skills.component.html',
   styleUrls: ['./skills.component.css']
 })
-export class SkillsComponent implements OnInit {
+export class SkillsComponent implements OnInit, OnDestroy {
 
   items:SkillInter[] = []
   formularioSkill:FormGroup
+  envio: boolean = false
   isAdmin:boolean = false
   agrega:boolean = false
   roles:string[] = []
+  sub:Subscription
 
   constructor(private skillService:SkillService, private _builder:FormBuilder,
-    private tokenService:TokenService) { 
+    private tokenService:TokenService, private storage:StorageService) { 
+
+      this.sub = this.storage._Reload.subscribe(() => {
+        this.getSkills()
+      })
 
       this.formularioSkill = this._builder.group({
         "titulo":['', [Validators.required]],
@@ -61,11 +69,16 @@ export class SkillsComponent implements OnInit {
 
   onSubmit(valor:Skill):void {
     //console.log(valor)
+    this.envio = !this.envio
     this.post(valor)
   }
 
   switchValue():void {
     this.agrega = !this.agrega
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe()
   }
 
 }

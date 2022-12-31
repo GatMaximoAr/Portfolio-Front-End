@@ -4,6 +4,7 @@ import { ExperienciaService } from 'src/app/services/Experiencia/experiencia.ser
 import { AuthService } from 'src/app/services/Auth/auth.service';
 import { Subscription } from 'rxjs';
 import { TokenService } from 'src/app/services/Auth/token.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-expriencia',
@@ -14,14 +15,20 @@ export class ExprienciaComponent implements OnInit, OnDestroy {
 
   Items:Item_exp[] = []
   isAdmin:boolean = false
-  subData:Subscription
+  sub:Subscription
   roles:string[] = []
 
   constructor(
-    private dataService:ExperienciaService, private tokenService:TokenService) { }
+    private dataService:ExperienciaService, private tokenService:TokenService,
+    private storage:StorageService) {
+
+      this.sub = this.storage._Reload.subscribe(() => {
+        this.getItems()
+      })
+     }
 
     getItems(){
-      this.subData = this.dataService.getItems()
+      this.dataService.getItems()
       .subscribe(resp => this.Items = resp)
     }
 
@@ -41,7 +48,7 @@ export class ExprienciaComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subData.unsubscribe()
+    this.sub.unsubscribe()
   }
 
 }

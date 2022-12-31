@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/compat/app';
+import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { TokenService } from './Auth/token.service';
 
@@ -9,9 +10,20 @@ firebase.default.initializeApp(environment.firebase)
   providedIn: 'root'
 })
 export class StorageService {
+
+  reload:BehaviorSubject<boolean> = new BehaviorSubject(true)
+
   storageRef = firebase.default.app().storage().ref()
 
   constructor(private tokenService:TokenService) { }
+
+  get _Reload() {
+    return this.reload.asObservable()
+  }
+
+  _Value_Reload(value:boolean) {
+    this.reload.next(value)
+  }
 
   get user():string {
     return this.tokenService.getUserName()
@@ -27,4 +39,6 @@ export class StorageService {
       return null
     }
   }
+
+
 }

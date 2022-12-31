@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params} from '@angular/router';
+import { TokenService } from 'src/app/services/Auth/token.service';
 
 @Component({
   selector: 'app-home',
@@ -8,10 +9,11 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  usuario:string
+
+  constructor(private router:ActivatedRoute, private tokenService:TokenService) { }
 
   ngOnInit(): void {
-    
   }
 
 }

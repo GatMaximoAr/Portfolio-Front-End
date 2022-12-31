@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TokenService } from 'src/app/services/Auth/token.service';
 import { ExperienciaService } from 'src/app/services/Experiencia/experiencia.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { Item_exp } from '../../../../models/Item';
@@ -23,14 +24,15 @@ export class UpdateItemComponent implements OnInit {
   
   valorImg:any
   previewEnvio:Item_exp
-  
+  envio:boolean = false
   formularioEnviado:boolean = false
   
 
   constructor(private dataService:ExperienciaService,
     private route:ActivatedRoute,
     private _builder:FormBuilder,
-    private router:Router, private storage:StorageService) { 
+    private router:Router, private storage:StorageService,
+    private tokenService:TokenService) { 
 
       this.formularioItemXp = this._builder.group({
         img_experiencia: ['', Validators.required],
@@ -109,12 +111,12 @@ export class UpdateItemComponent implements OnInit {
     console.log(index)
   }
 
-  goHome():void {
-    this.router.navigate([''])
+  goHome() {
+    this.router.navigate([`/portfolio/${this.tokenService.getUserName()}`]);
   }
 
   enviarform(){
-
+    this.envio = !this.envio
     this.storage.subirImagen(this.valorImg, "exp_img", "experiencias/").then(resp => {
       this.previewEnvio.img_experiencia = resp
       this.putItem(this.previewEnvio)
