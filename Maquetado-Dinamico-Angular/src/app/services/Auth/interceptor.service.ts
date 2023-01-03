@@ -1,6 +1,7 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, finalize } from 'rxjs';
+import { SpinnerService } from '../spinner.service';
 import { TokenService } from './token.service';
 
 @Injectable({
@@ -8,9 +9,11 @@ import { TokenService } from './token.service';
 })
 export class InterceptorService implements HttpInterceptor{
 
-  constructor(private tokenService:TokenService) { }
+  constructor(private tokenService:TokenService, private spinnerService:SpinnerService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    this.spinnerService.show()
+
     let intReq = req
     const token = this.tokenService.getToken()
 
@@ -20,7 +23,9 @@ export class InterceptorService implements HttpInterceptor{
       })
     }
     //console.log(intReq)
-    return next.handle(intReq);
+    return next.handle(intReq).pipe(
+      finalize(() => this.spinnerService.hide())
+    )
   }
 }
 
