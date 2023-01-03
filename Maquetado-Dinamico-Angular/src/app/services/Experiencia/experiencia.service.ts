@@ -16,11 +16,11 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ExperienciaService {
-  private url ="http://localhost:8080/relacionxp/traer/"
-  private url_get="http://localhost:8080/relacionxp"
-  private url_post ="http://localhost:8080/relacioxp/usuario"
-  private url_edit = "http://localhost:8080/relacioxp/editar"
-  private url_delete = "http://localhost:8080/experiencia/delete"
+  private url ="https://deploy-render-yu6n.onrender.com/relacionxp/traer/"
+  private url_get="https://deploy-render-yu6n.onrender.com/relacionxp"
+  private url_post ="https://deploy-render-yu6n.onrender.com/relacioxp/usuario"
+  private url_edit = "https://deploy-render-yu6n.onrender.com/relacioxp/editar"
+  private url_delete = "https://deploy-render-yu6n.onrender.com/experiencia/delete"
 
   constructor(private http:HttpClient, private tokenService:TokenService) { }
 

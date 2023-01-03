@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NuevoUsuario } from 'src/app/models/NuevoUsuario';
 import { AuthService } from 'src/app/services/Auth/auth.service';
 
@@ -14,9 +15,9 @@ export class RegistroComponent implements OnInit {
   errorRegistro:boolean = false
   roles:string[] = ["admin"]
   mensajeError:string
-  successful:boolean = false
 
-  constructor(private _builder:FormBuilder, private autService:AuthService) { 
+  constructor(private _builder:FormBuilder, private autService:AuthService,
+    private route:Router) { 
     this.formRegistro = this._builder.group({
 
       "nombreUsuario": ['', [Validators.required, Validators.minLength(4)]],
@@ -31,18 +32,15 @@ export class RegistroComponent implements OnInit {
   onRegistro(valor:NuevoUsuario):void {
     this.errorRegistro = false
     valor.roles = this.roles
-    console.log(valor)
-    this.successful = !this.successful 
-    
-    console.log(this.successful)
-    //this.nuevoUsuario(valor)
+    this.nuevoUsuario(valor)
   }
 
   nuevoUsuario(usuario:NuevoUsuario):void {
     this.autService.singUp(usuario)
     .subscribe(resp => {
       console.log(resp)
-      this.successful = true
+      alert("Nuevo usuario creado")
+      this.route.navigate(['login'])
     }, err => {
       this.errorRegistro = true
 

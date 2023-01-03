@@ -25,15 +25,15 @@ const httpOptionsPlain = {
 })
 export class AcercaService {   
 
-  private url = "http://localhost:8080/acerca";
+  private url = "https://deploy-render-yu6n.onrender.com/acerca";
 
-  private url_post = "http://localhost:8080/acerca/usuario";
+  private url_post = "https://deploy-render-yu6n.onrender.com/acerca/usuario";
 
-  private url_put ="http://localhost:8080/acerca/editar"
+  private url_put ="https://deploy-render-yu6n.onrender.com/acerca/editar"
 
-  private url_delete ="http://localhost:8080/delete/acerca"
+  private url_delete ="https://deploy-render-yu6n.onrender.com/delete/acerca"
 
-  private url_get1 = "http://localhost:8080/acerca"
+  private url_get1 = "https://deploy-render-yu6n.onrender.com/acerca"
 
   private path = "acerca-usuario/"
 

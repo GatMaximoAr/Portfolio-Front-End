@@ -17,8 +17,8 @@ const httpOptions = {
 })
 export class AuthService {
 
-  private auth_url:string = "http://localhost:8080/auth/"
-  private exist_url:string = "http://localhost:8080/auth/usuario/exist"
+  private auth_url:string = "https://deploy-render-yu6n.onrender.com/auth/"
+  private exist_url:string = "https://deploy-render-yu6n.onrender.com/auth/usuario/exist"
   
 
   private guest:BehaviorSubject<boolean> = new BehaviorSubject(false)

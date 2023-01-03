@@ -15,12 +15,12 @@ const httpOptions = {
 })
 export class EducacionServiceService {
 
-  //private url_get ="http://localhost:8080/educacion/traer"
-  private url_getBy = "http://localhost:8080/formaciones"
-  private url_get_one ="http://localhost:8080/educacion"
-  private url_post = "http://localhost:8080/educacion/usuario"
-  private url_put = "http://localhost:8080/educacion/editar"
-  private url_delete = "http://localhost:8080/educacion/delete"
+  //private url_get ="https://deploy-render-yu6n.onrender.com/educacion/traer"
+  private url_getBy = "https://deploy-render-yu6n.onrender.com/formaciones"
+  private url_get_one ="https://deploy-render-yu6n.onrender.com/educacion"
+  private url_post = "https://deploy-render-yu6n.onrender.com/educacion/usuario"
+  private url_put = "https://deploy-render-yu6n.onrender.com/educacion/editar"
+  private url_delete = "https://deploy-render-yu6n.onrender.com/educacion/delete"
 
   constructor(private http:HttpClient, private tokenService:TokenService) { }
 
