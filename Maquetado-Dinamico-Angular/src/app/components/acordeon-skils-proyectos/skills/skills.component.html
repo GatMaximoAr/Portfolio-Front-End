@@ -7,12 +7,21 @@
     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
       <div class="accordion-body">
           <div class="row">
+
+            <div *ngIf="items.length != 0; else noData">
+
               <ng-container *ngFor="let item of items">
 
                 <app-skill-item [data]="item">
 
                 </app-skill-item>
               </ng-container>
+
+            </div>
+
+              <ng-template #noData>
+                <h4 class="text-center mt-3">No hay datos para esta seccion</h4>
+              </ng-template>
 
               <ng-container *ngIf="!agrega; else nuevo">
                 <div class="mt-2 d-flex flex-row justify-content-center align-content-center">

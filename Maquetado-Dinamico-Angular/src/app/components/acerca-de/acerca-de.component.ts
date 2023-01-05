@@ -45,6 +45,7 @@ export class AcercaDeComponent implements OnInit, OnDestroy {
       //console.log(resp)
       this.agrega.next(false)
     }, err =>{
+      //this.agrega.next(false)
     })
     
   }

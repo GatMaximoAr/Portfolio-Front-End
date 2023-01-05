@@ -14,11 +14,20 @@
             </div>
         </div>
 
-        <ng-container *ngFor="let item of formaciones">
-            <app-educacion-item [data]="item">
+        <div *ngIf="formaciones.length != 0; else noData">
 
-            </app-educacion-item>
-        </ng-container>
+            <ng-container *ngFor="let item of formaciones">
+                <app-educacion-item [data]="item">
+    
+                </app-educacion-item>
+            </ng-container>
+
+        </div>
+
+
+        <ng-template #noData>
+            <h4 class="text-center mt-3">No hay datos para esta seccion</h4>
+          </ng-template>
 
         <div class="mt-2 d-flex flex-row justify-content-center align-content-center">
             <div>

@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   loginUsuario:Login
   islogged:boolean = false;
   roles:string[] = []
+  clickLog:boolean = false
 
   constructor(private authService:AuthService,
     private route:Router, private __builder:FormBuilder,
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(valor:Login):void {
+    this.clickLog = !this.clickLog
     console.log(valor);
     
     this.authService.singIn(valor)
@@ -53,10 +55,12 @@ export class LoginComponent implements OnInit {
       this.tokenService.setUserName(resp.nombreUsuario)
       this.tokenService.setAuthorities(resp.authorities)
       this.roles = resp.authorities
+
       this.route.navigate([`/portfolio/${resp.nombreUsuario}`]);
     }, err => {err
       this.islogged = false
       this.logError = true
+      this.clickLog = false
       console.log(err)
     })
   }

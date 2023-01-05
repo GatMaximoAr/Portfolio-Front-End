@@ -18,11 +18,19 @@
                           <ng-container *ngIf="logError">
                             <small class="text-danger"> <b>Usuario y/o Password son incorectos</b> </small>
                         </ng-container>
-                          <div>
+
+                          <div *ngIf="!clickLog; else cargando">
                             <button type="submit" [disabled]="formularioLogin.invalid" class="btn btn-success mt-2 form-control">
                                 Login
                             </button>
                           </div>
+
+                          <ng-template #cargando>
+                            <button class="btn btn-success form-control" type="button" disabled>
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                <span class="sr-only"></span>
+                              </button>
+                          </ng-template>
                     </form>
 
                     <h6 class="text-danger">Aun no tienes cuenta? <a routerLink="/singUp">Registrate</a></h6>
