@@ -40,7 +40,7 @@
     <div *ngIf="Items.length != 0; else noData">
 
         <ng-container *ngFor="let item of Items">
-            <app-experiencia-item [data]="item">
+            <app-experiencia-item [data]="item" (deleteEmit)="deleteItem($event)">
     
             </app-experiencia-item>
         </ng-container>

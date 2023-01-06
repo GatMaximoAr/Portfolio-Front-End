@@ -60,6 +60,16 @@ export class EducacionComponent implements OnInit, OnDestroy {
 
   }
 
+  deleteItem(itemId:number):void {
+    console.log(itemId)
+
+    this.eduService.deleteFormacion(itemId)
+    .subscribe(resp => {
+      console.log(resp)
+      window.location.reload()
+    })
+  }
+
   ngOnDestroy(): void {
     this.sub.unsubscribe()
   }

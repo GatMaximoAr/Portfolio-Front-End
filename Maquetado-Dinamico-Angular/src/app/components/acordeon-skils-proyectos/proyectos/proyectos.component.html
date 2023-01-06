@@ -11,7 +11,7 @@
               <div *ngIf="proyectos.length != 0; else noData">
 
                 <ng-container *ngFor="let proyecto of proyectos">
-                  <app-item-proyectos [data]="proyecto">
+                  <app-item-proyectos [data]="proyecto" (deleteEmit)="deleteItem($event)">
                       
                   </app-item-proyectos>
                 </ng-container>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Educacion } from 'src/app/models/Educacion';
 import { TokenService } from 'src/app/services/Auth/token.service';
 
@@ -12,6 +12,8 @@ export class EducacionItemComponent implements OnInit {
   mostrar:boolean = true;
 
   @Input('data') item:Educacion
+  @Output() deleteEmit = new EventEmitter<number>()
+
   isAdmin:boolean = false;
   roles:string[] = []
 
@@ -29,6 +31,10 @@ export class EducacionItemComponent implements OnInit {
         this.isAdmin = true
       }
     })
+  }
+
+  deleteItem():void {
+    this.deleteEmit.emit(this.item.id)
   }
 
 }

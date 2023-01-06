@@ -10,6 +10,13 @@
                 </button>
             </a>
         </div>
+
+        <div [ngClass]="[isAdmin ? '' : 'oculto']">
+            <button type="button" class="btn btn-danger me-2" (click)="deleteItem()">
+              X Eliminar
+          </button>
+        
+        </div>
         
     </div>
 
@@ -36,7 +43,7 @@
         </div>
     </div>
 
-    <div class="col-8 d-flex flex-column justify-content-start">
+    <div class="col-8 d-flex flex-column justify-content-center">
         <div class="row">
             <div class="d-flex">
                 <div>

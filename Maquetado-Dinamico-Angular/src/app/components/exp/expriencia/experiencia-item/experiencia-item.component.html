@@ -1,5 +1,6 @@
 <div class="row mt-3 mb-5">
     <div class="d-flex flex-row-reverse">
+
         <div [ngClass]="[isAdmin ? '' : 'oculto']">
             <a [routerLink]="['update-item-exp', item.id]">
                 <button type="button" class="btn btn-info">
@@ -8,6 +9,13 @@
                     </svg> Editar
                 </button>
             </a>
+        </div>
+
+        <div [ngClass]="[isAdmin ? '' : 'oculto']">
+            <button type="button" class="btn btn-danger me-2" (click)="deleteItem()">
+              X Eliminar
+          </button>
+        
         </div>
         
     </div>

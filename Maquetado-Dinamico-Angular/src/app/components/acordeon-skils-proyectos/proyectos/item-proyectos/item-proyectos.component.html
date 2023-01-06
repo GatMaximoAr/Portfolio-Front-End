@@ -12,8 +12,15 @@
                     </button>
                 </a>
             </div>
+
+            <div [ngClass]="[isAdmin ? '' : 'oculto']">
+                <button type="button" class="btn btn-danger me-2" (click)="deleteItem()">
+                  X Eliminar
+              </button>
             
-        </div>
+            </div>
+
+            </div>
     
         <div class="col-4 d-flex">
             <div>
@@ -22,15 +29,13 @@
     
         </div>
     
-    </div>
-    
     <div class="row">
         <div class="col-4 flex-column justify-content-center">
             <div class="row">
                 <div class="d-flex ">
                     <div>
                         <a href={{item.vinculo_img}} target="_blank">
-                            <img src={{item.imagen}} alt="Logo IPEM 137" class="logoIpem img-fluid">
+                            <img src={{item.imagen}} alt="imagen proyecto" class="img-fluid logos-proyecto">
                         </a>
                     </div>
     
@@ -38,7 +43,7 @@
             </div>
         </div>
     
-        <div class="col-8 d-flex flex-column justify-content-start">
+        <div class="col-8 d-flex flex-column justify-content-center">
             <div class="row">
                 <div class="d-flex">
                     <div>

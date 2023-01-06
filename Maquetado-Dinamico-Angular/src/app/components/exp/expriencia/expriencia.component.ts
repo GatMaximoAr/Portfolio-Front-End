@@ -47,6 +47,16 @@ export class ExprienciaComponent implements OnInit, OnDestroy {
     })
   }
 
+  deleteItem(itemId:number):void {
+    console.log(itemId)
+
+    this.dataService.deleteItem(itemId)
+    .subscribe(resp => {
+      console.log(resp)
+      window.location.reload()
+    })
+  }
+
   ngOnDestroy(): void {
     this.sub.unsubscribe()
   }

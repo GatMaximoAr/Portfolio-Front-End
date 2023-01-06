@@ -1,6 +1,8 @@
-.Logos-proyecto {
+.logos-proyecto {
     height: auto;
-    width: 100px;
-    margin-left: 10px;
-    margin-right: 50px;
+    width: 300px;
+}
+
+.oculto {
+    display: none;
 }

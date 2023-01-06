@@ -17,7 +17,7 @@
         <div *ngIf="formaciones.length != 0; else noData">
 
             <ng-container *ngFor="let item of formaciones">
-                <app-educacion-item [data]="item">
+                <app-educacion-item [data]="item" (deleteEmit)="deleteItem($event)">
     
                 </app-educacion-item>
             </ng-container>

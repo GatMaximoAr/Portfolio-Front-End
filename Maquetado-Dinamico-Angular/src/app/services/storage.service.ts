@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/compat/app';
 import { BehaviorSubject } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { firebaseConfig } from 'src/environments/firebase';
 import { TokenService } from './Auth/token.service';
 
-firebase.default.initializeApp(environment.firebase)
+firebase.default.initializeApp(firebaseConfig)
 
 @Injectable({
   providedIn: 'root'

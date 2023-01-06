@@ -14,7 +14,7 @@
 
         </ng-template>
     
-        <div class="d-flex flex-row-reverse">
+        <div class="d-flex flex-row-reverse mt-2">
             <div [ngClass]="[isAdmin ? '' : 'oculto']">
                 <a [routerLink]="['update-acerca', obj.id]">
                     <button type="button" class="btn btn-info">
@@ -23,6 +23,13 @@
                         </svg> Editar
                     </button>
                 </a>
+            </div>
+
+            <div [ngClass]="[isAdmin ? '' : 'oculto']">
+                <button type="button" class="btn btn-danger me-2" (click)="deleteItem(obj.id)">
+                  X Eliminar
+              </button>
+            
             </div>
             
         </div>
