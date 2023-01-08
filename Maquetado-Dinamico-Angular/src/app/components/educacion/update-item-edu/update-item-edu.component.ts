@@ -66,7 +66,7 @@ export class UpdateItemEduComponent implements OnInit {
   putItem(formacion:Educacion):void {
     this.eduService.putFormacion(formacion)
     .subscribe(resp => {
-      console.log(resp)
+      //console.log(resp)
       window.location.reload()
     })
     this.goHome()
@@ -92,13 +92,13 @@ export class UpdateItemEduComponent implements OnInit {
       this.previewEnvio.imagen = this.valorImg
       this.previewEnvio.id = this.indice
       this.formularioEnviado = !this.formularioEnviado;
-      console.log(this.previewEnvio)
+      //console.log(this.previewEnvio)
     }
 
     deleteItem() {
       this.eduService.deleteFormacion(this.indice)
       .subscribe(resp => {
-        console.log(resp)
+        //console.log(resp)
         window.location.reload()
       })
       

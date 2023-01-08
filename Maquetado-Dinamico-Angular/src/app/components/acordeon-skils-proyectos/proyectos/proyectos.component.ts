@@ -49,10 +49,10 @@ export class ProyectosComponent implements OnInit, OnDestroy {
     }
 
     deleteItem(itemId:number) {
-      console.log(itemId)
+      //console.log(itemId)
       this.proyectoService.deleteProyecto(itemId)
       .subscribe(resp => {
-        console.log(resp)
+        //console.log(resp)
         window.location.reload()
       })
     }

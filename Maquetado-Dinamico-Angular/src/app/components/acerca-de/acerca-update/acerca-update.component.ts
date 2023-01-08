@@ -79,7 +79,7 @@ export class AcercaUpdateComponent implements OnInit {
     putAcerca(acerca:Acerca) {
       this.acercaService.putAcerca(acerca)
       .subscribe(resp => {
-        console.log(resp)
+        //console.log(resp)
         window.location.reload()
       })
       this.goHome()
@@ -110,7 +110,7 @@ export class AcercaUpdateComponent implements OnInit {
   deleteItem():void {
     this.acercaService.deleteAcerca(this.indice)
     .subscribe(resp => {
-      console.log(resp)
+      //console.log(resp)
       window.location.reload()
     })
 

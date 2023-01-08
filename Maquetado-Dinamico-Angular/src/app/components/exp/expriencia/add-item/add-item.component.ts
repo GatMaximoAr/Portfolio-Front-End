@@ -43,7 +43,7 @@ export class AddItemComponent implements OnInit {
     //valor.img_experiencia = this.valorImg
     this.previewEnvio = valor
     this.previewEnvio.img_experiencia = this.valorImg
-    console.log(this.previewEnvio)
+    //console.log(this.previewEnvio)
     this.formularioEnviado = !this.formularioEnviado
     
   }
@@ -78,7 +78,7 @@ export class AddItemComponent implements OnInit {
   postItem(parametro:Item_exp) {
     this.dataService.postItem(parametro)
     .subscribe(data => {
-      console.log(data)
+      //console.log(data)
       window.location.reload();
     })
    /* this.router.navigate(['/portfolio'])
@@ -107,17 +107,4 @@ export class AddItemComponent implements OnInit {
     this.formularioEnviado = !this.formularioEnviado
     this.formularioItemXp.reset()
   }
-
- /* convertArrayobject(actividades:ItemList[]):ItemList[] {
-    const lista:ItemList[] = []
-
-    for (let act of actividades) {
-      var item:ItemList = {
-        actividad: act.actividad
-      }
-      lista.push(item)
-    } 
-
-    return lista;
-  } */
 }

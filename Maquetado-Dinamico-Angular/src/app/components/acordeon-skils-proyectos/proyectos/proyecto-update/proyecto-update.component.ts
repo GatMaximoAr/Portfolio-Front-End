@@ -76,7 +76,7 @@ export class ProyectoUpdateComponent implements OnInit {
    putItem(proyecto:Proyecto):void {
     this.proyectoService.putProyecto(proyecto)
     .subscribe(resp => {
-      console.log(resp)
+      //console.log(resp)
       window.location.reload()
     })
     this.goHome()
@@ -85,7 +85,7 @@ export class ProyectoUpdateComponent implements OnInit {
   deleteItem() {
     this.proyectoService.deleteProyecto(this.indice)
     .subscribe(resp => {
-      console.log(resp)
+      //console.log(resp)
       window.location.reload()
     })
     this.goHome()

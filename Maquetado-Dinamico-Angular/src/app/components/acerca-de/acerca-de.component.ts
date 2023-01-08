@@ -62,7 +62,7 @@ export class AcercaDeComponent implements OnInit, OnDestroy {
   deleteItem(itemId:number):void {
     this.acercaService.deleteAcerca(itemId)
     .subscribe(resp => {
-      console.log(resp)
+      //console.log(resp)
       window.location.reload()
     })
   }

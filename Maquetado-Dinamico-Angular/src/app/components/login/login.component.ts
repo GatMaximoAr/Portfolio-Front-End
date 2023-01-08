@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
 
   onLogin(valor:Login):void {
     this.clickLog = !this.clickLog
-    console.log(valor);
+    //console.log(valor);
     
     this.authService.singIn(valor)
     .subscribe(resp => {
@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
       this.islogged = false
       this.logError = true
       this.clickLog = false
-      console.log(err)
+      //console.log(err)
     })
   }
 }

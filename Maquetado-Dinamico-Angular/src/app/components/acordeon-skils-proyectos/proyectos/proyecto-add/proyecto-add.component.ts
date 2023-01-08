@@ -57,7 +57,7 @@ export class ProyectoAddComponent implements OnInit {
    newPost(proyecto:Proyecto):void {
     this.proyectoService.postNewProyecto(proyecto)
     .subscribe(resp => {
-      console.log(resp)
+      //console.log(resp)
       window.location.reload()
     })
     this.goHome()

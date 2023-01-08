@@ -56,7 +56,7 @@ export class AcercaAddComponent implements OnInit {
       reader.readAsDataURL(imagen)
       reader.onloadend = () => {
         this.img_perfil = reader.result!
-        console.log(this.img_perfil)
+        //console.log(this.img_perfil)
       }
     }
   
@@ -73,7 +73,7 @@ export class AcercaAddComponent implements OnInit {
     postAcerca(acerca:Acerca) {
       this.acercaService.postAcerca(acerca)
       .subscribe(resp => {
-        console.log(resp)
+        //console.log(resp)
         window.location.reload()
       })
       this.goHome()

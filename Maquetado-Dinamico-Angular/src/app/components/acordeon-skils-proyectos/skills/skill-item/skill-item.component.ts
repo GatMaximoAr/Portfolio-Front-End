@@ -69,20 +69,20 @@ export class SkillItemComponent implements OnInit {
   put(skill:SkillInter):void {
     this.skillService.putSkill(skill)
     .subscribe(resp => {
-      console.log(resp)
+      //console.log(resp)
       window.location.reload();
     },err => {
-      console.log(err)
+      //console.log(err)
     })
   }
 
   deleteSkill(id:number):void {
     this.skillService.deleteSkill(id)
     .subscribe(resp => {
-      console.log(resp)
+      //console.log(resp)
       window.location.reload()
     },err => {
-      console.log(err)
+      //console.log(err)
     })
   }
 

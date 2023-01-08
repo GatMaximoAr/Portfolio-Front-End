@@ -95,7 +95,7 @@ export class UpdateItemComponent implements OnInit {
   putItem(datos:Item_exp){
     this.dataService.editItem(datos)
     .subscribe(data => {
-      console.log(data)
+      //console.log(data)
       window.location.reload();
     })
     this.goHome()
@@ -108,7 +108,7 @@ export class UpdateItemComponent implements OnInit {
 
   deleteItemList(index:number){
     this.actividad.removeAt(index);
-    console.log(index)
+    //console.log(index)
   }
 
   goHome() {

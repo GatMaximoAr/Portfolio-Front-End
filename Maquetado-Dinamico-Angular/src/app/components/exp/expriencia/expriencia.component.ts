@@ -48,11 +48,11 @@ export class ExprienciaComponent implements OnInit, OnDestroy {
   }
 
   deleteItem(itemId:number):void {
-    console.log(itemId)
+    //console.log(itemId)
 
     this.dataService.deleteItem(itemId)
     .subscribe(resp => {
-      console.log(resp)
+      //console.log(resp)
       window.location.reload()
     })
   }

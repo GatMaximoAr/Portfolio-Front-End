@@ -21,7 +21,7 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     
     
-    console.log(this.usuario)
+    //console.log(this.usuario)
   }
 
   async exist(usuario:string) {

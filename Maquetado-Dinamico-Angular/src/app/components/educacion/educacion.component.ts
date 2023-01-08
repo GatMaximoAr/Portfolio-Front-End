@@ -61,11 +61,11 @@ export class EducacionComponent implements OnInit, OnDestroy {
   }
 
   deleteItem(itemId:number):void {
-    console.log(itemId)
+    //console.log(itemId)
 
     this.eduService.deleteFormacion(itemId)
     .subscribe(resp => {
-      console.log(resp)
+      //console.log(resp)
       window.location.reload()
     })
   }

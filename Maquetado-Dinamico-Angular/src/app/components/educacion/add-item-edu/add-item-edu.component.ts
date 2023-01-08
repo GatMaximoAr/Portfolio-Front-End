@@ -57,7 +57,7 @@ export class AddItemEduComponent implements OnInit {
   newPost(formacion:Educacion):void {
     this.eduService.postFormacion(formacion)
     .subscribe(resp => {
-      console.log(resp)
+      //console.log(resp)
       window.location.reload()
     })
     this.goHome()

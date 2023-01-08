@@ -63,7 +63,7 @@ export class SkillsComponent implements OnInit, OnDestroy {
       //console.log(resp)
       window.location.reload()
     },err => {
-      console.log(err)
+      //console.log(err)
     })
   }
 
