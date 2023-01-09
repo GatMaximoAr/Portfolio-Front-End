@@ -1,7 +1,7 @@
 .bordeDiv {
-    border-width: 1px;
+    border-width: 2px;
     border-style: ridge;
-    border-color: lightsteelblue;
+    border-color: rgb(1, 7, 15);
 }
 
 .LogoContr {

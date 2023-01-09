@@ -1,15 +1,16 @@
 export const firebaseConfig = {
     
-    apiKey: "AIzaSyCrKvcJNV9Bl-eVmhO6eDaHs_pOcfEVSLw",
-  
-    authDomain: "upoload-images.firebaseapp.com",
-  
-    projectId: "upoload-images",
-  
-    storageBucket: "upoload-images.appspot.com",
-  
-    messagingSenderId: "986591511795",
-  
-    appId: "1:986591511795:web:1fbe15b4a7bf08763ba386"
+    apiKey: "AIzaSyDC94aCQ70h_9qjBUej5s9gryWD4yPLOSI",
+
+    authDomain: "proyecto-argentina-progr-296dd.firebaseapp.com",
+
+    projectId: "proyecto-argentina-progr-296dd",
+
+    storageBucket: "proyecto-argentina-progr-296dd.appspot.com",
+
+    messagingSenderId: "893080121526",
+
+    appId: "1:893080121526:web:22cbef89cc2116a4da3617"
+
   
 }

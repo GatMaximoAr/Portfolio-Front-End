@@ -29,7 +29,7 @@ export class SkillsComponent implements OnInit, OnDestroy {
       })
 
       this.formularioSkill = this._builder.group({
-        "titulo":['', [Validators.required]],
+        "titulo":['', [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
         "color":['', [Validators.required]],
         "porcentaje":['', [Validators.required]]
       })
