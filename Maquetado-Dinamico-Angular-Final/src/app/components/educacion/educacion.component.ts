@@ -54,7 +54,7 @@ export class EducacionComponent implements OnInit, OnDestroy {
 
   getFormaciones():void {
     if (this.getData) {
-      this.subData = this.eduService.getFormaciones().subscribe(resp => {
+      this.eduService.getFormaciones().subscribe(resp => {
         this.formaciones = resp;
         //console.log(resp);
         //console.log(this.formaciones);
@@ -75,6 +75,6 @@ export class EducacionComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub.unsubscribe()
-    this.subData.unsubscribe()
+    //this.subData.unsubscribe()
   }
 }

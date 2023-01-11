@@ -33,7 +33,7 @@ export class ExprienciaComponent implements OnInit, OnDestroy {
 
     getItems(){
       if (this.getData) {
-        this.subData = this.dataService.getItems()
+        this.dataService.getItems()
       .subscribe(resp => this.Items = resp)
       }
     }
@@ -65,7 +65,7 @@ export class ExprienciaComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub.unsubscribe()
-    this.subData.unsubscribe()
+    //this.subData.unsubscribe()
   }
 
 }

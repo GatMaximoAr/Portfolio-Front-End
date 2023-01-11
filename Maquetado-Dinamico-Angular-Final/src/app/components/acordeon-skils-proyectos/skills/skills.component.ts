@@ -47,7 +47,7 @@ export class SkillsComponent implements OnInit, OnDestroy {
 
   getSkills():void {
     if (this.getData) {
-      this.subData = this.skillService.getSkills()
+      this.skillService.getSkills()
     .subscribe(resp => {
       //console.log(resp)
       this.items = resp
@@ -85,7 +85,7 @@ export class SkillsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub.unsubscribe()
-    this.subData.unsubscribe()
+    //this.subData.unsubscribe()
   }
 
 }

@@ -39,7 +39,7 @@ export class ProyectosComponent implements OnInit, OnDestroy {
    getProyectos():void {
     
     if (this.getData) {
-      this.subData = this.proyectoService.getProyectos()
+      this.proyectoService.getProyectos()
     .subscribe(resp => {
       this.proyectos = resp;
       //console.log(resp);
@@ -66,7 +66,7 @@ export class ProyectosComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
       this.sub.unsubscribe()
-      this.subData.unsubscribe()
+      //this.subData.unsubscribe()
     }
 
 }

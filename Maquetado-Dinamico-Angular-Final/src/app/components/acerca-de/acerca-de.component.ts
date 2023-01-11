@@ -44,7 +44,7 @@ export class AcercaDeComponent implements OnInit, OnDestroy {
 
   getAcerca():void {
     if (this.getData) {
-      this.subData = this.acercaService.getAcerca().
+      this.acercaService.getAcerca().
     subscribe(resp => {
       this.obj = resp
       //console.log(resp)
@@ -76,7 +76,7 @@ export class AcercaDeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub.unsubscribe()
-    this.subData.unsubscribe()
+    //this.subData.unsubscribe()
   }
 
 }
