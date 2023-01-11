@@ -19,7 +19,7 @@ export class UserComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    
+    this.asignarUsuario()
     
     //console.log(this.usuario)
   }
@@ -28,7 +28,7 @@ export class UserComponent implements OnInit {
     this.auth.existUser(usuario).subscribe(async (resp) => {
       if(resp) {
         this.tokenService.setUserName(this.usuario)
-        this.storage._Value_Reload(false)
+        this.storage._Value_Reload(true)
       }else {
         alert("ese usuario no existe, puedes crearlo...")
         this.route.navigate(['/singUp'])

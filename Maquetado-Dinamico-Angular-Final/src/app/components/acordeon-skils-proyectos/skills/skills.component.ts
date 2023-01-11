@@ -16,15 +16,19 @@ export class SkillsComponent implements OnInit, OnDestroy {
   items:SkillInter[] = []
   formularioSkill:FormGroup
   envio: boolean = false
+  getData:boolean = false
   isAdmin:boolean = false
   agrega:boolean = false
   roles:string[] = []
   sub:Subscription
+  subData:Subscription
 
   constructor(private skillService:SkillService, private _builder:FormBuilder,
     private tokenService:TokenService, private storage:StorageService) { 
 
-      this.sub = this.storage._Reload.subscribe(() => {
+      this.sub = this.storage._Reload.subscribe((resp) => {
+        this.getData = resp
+        
         this.getSkills()
       })
 
@@ -42,11 +46,13 @@ export class SkillsComponent implements OnInit, OnDestroy {
   }
 
   getSkills():void {
-    this.skillService.getSkills()
+    if (this.getData) {
+      this.subData = this.skillService.getSkills()
     .subscribe(resp => {
       //console.log(resp)
       this.items = resp
     })
+    }
   }
 
   getRol():void {
@@ -79,6 +85,7 @@ export class SkillsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub.unsubscribe()
+    this.subData.unsubscribe()
   }
 
 }

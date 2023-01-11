@@ -14,7 +14,8 @@ export class AcercaDeComponent implements OnInit, OnDestroy {
   //@ViewChild ('AcercaDe') acercade:ElementRef
 
   sub:Subscription
-  
+  subData:Subscription
+  getData:boolean = false
   agrega:BehaviorSubject<boolean> = new BehaviorSubject(true)
   isAdmin:boolean = false
   roles:string[] = []
@@ -25,8 +26,11 @@ export class AcercaDeComponent implements OnInit, OnDestroy {
   constructor(private acercaService:AcercaService,
     private tokenService:TokenService, private storage:StorageService)
      { 
-      this.sub = this.storage._Reload.subscribe(() => {
+      this.sub = this.storage._Reload.subscribe((resp) => {
+        this.getData = resp
+
         this.getAcerca()
+
       })
      }
 
@@ -39,7 +43,8 @@ export class AcercaDeComponent implements OnInit, OnDestroy {
   }
 
   getAcerca():void {
-    this.acercaService.getAcerca().
+    if (this.getData) {
+      this.subData = this.acercaService.getAcerca().
     subscribe(resp => {
       this.obj = resp
       //console.log(resp)
@@ -47,6 +52,8 @@ export class AcercaDeComponent implements OnInit, OnDestroy {
     }, err =>{
       //this.agrega.next(false)
     })
+
+    }
     
   }
 
@@ -69,6 +76,7 @@ export class AcercaDeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub.unsubscribe()
+    this.subData.unsubscribe()
   }
 
 }

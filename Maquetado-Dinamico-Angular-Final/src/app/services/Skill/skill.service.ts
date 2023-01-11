@@ -16,11 +16,11 @@ const httpOptions = {
 
 export class SkillService {
 
-  private url_post:string ="https://deploy-render-yu6n.onrender.com/skill/usuario"
-  private get_url:string ="https://deploy-render-yu6n.onrender.com/skills/traer"
-  private url_getBy:string ="https://deploy-render-yu6n.onrender.com/skills"
-  private put_url:string ="https://deploy-render-yu6n.onrender.com/skill/"
-  private delete_url:string="https://deploy-render-yu6n.onrender.com/skill/"
+  private url_post:string ="https://portfolio-ap-backend-k8b1.onrender.com/skill/usuario"
+  private get_url:string ="https://portfolio-ap-backend-k8b1.onrender.com/skills/traer"
+  private url_getBy:string ="https://portfolio-ap-backend-k8b1.onrender.com/skills"
+  private put_url:string ="https://portfolio-ap-backend-k8b1.onrender.com/skill/"
+  private delete_url:string="https://portfolio-ap-backend-k8b1.onrender.com/skill/"
 
   constructor(private http:HttpClient, private tokenService:TokenService) { }
 

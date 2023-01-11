@@ -15,21 +15,27 @@ export class ExprienciaComponent implements OnInit, OnDestroy {
 
   Items:Item_exp[] = []
   isAdmin:boolean = false
+  getData:boolean = false
   sub:Subscription
+  subData:Subscription
   roles:string[] = []
 
   constructor(
     private dataService:ExperienciaService, private tokenService:TokenService,
     private storage:StorageService) {
 
-      this.sub = this.storage._Reload.subscribe(() => {
+      this.sub = this.storage._Reload.subscribe((resp) => {
+        this.getData = resp
+
         this.getItems()
       })
      }
 
     getItems(){
-      this.dataService.getItems()
+      if (this.getData) {
+        this.subData = this.dataService.getItems()
       .subscribe(resp => this.Items = resp)
+      }
     }
 
   ngOnInit(): void {
@@ -59,6 +65,7 @@ export class ExprienciaComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub.unsubscribe()
+    this.subData.unsubscribe()
   }
 
 }

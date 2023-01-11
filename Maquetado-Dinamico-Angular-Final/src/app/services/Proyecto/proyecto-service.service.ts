@@ -16,12 +16,12 @@ const httpOptions = {
 })
 export class ProyectoServiceService {
 
-  private url_get ="https://deploy-render-yu6n.onrender.com/proyecto/traer"
-  private url_getBy="https://deploy-render-yu6n.onrender.com/proyectos"
-  private url_get_one ="https://deploy-render-yu6n.onrender.com/proyecto"
-  private url_post="https://deploy-render-yu6n.onrender.com/proyecto/usuario"
-  private url_put="https://deploy-render-yu6n.onrender.com/proyecto/editar"
-  private url_delete="https://deploy-render-yu6n.onrender.com/proyecto/delete"
+  private url_get ="https://portfolio-ap-backend-k8b1.onrender.com/proyecto/traer"
+  private url_getBy="https://portfolio-ap-backend-k8b1.onrender.com/proyectos"
+  private url_get_one ="https://portfolio-ap-backend-k8b1.onrender.com/proyecto"
+  private url_post="https://portfolio-ap-backend-k8b1.onrender.com/proyecto/usuario"
+  private url_put="https://portfolio-ap-backend-k8b1.onrender.com/proyecto/editar"
+  private url_delete="https://portfolio-ap-backend-k8b1.onrender.com/proyecto/delete"
   
 
   constructor(private http:HttpClient, private tokenService:TokenService) { }

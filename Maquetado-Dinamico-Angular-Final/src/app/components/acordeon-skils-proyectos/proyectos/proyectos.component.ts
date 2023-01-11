@@ -13,15 +13,18 @@ import { StorageService } from 'src/app/services/storage.service';
 export class ProyectosComponent implements OnInit, OnDestroy {
 
   proyectos:Proyecto[] = []
+  getData:boolean = false
   isAdmin: boolean = false
   roles:string[]
   user:string 
   sub:Subscription
+  subData:Subscription
 
   constructor(private proyectoService:ProyectoServiceService, private tokenService:TokenService,
     private storage:StorageService) {
 
-      this.sub = this.storage._Reload.subscribe(() =>{
+      this.sub = this.storage._Reload.subscribe((resp) =>{
+        this.getData = resp
         this.getProyectos()
       })
     }
@@ -34,11 +37,15 @@ export class ProyectosComponent implements OnInit, OnDestroy {
     }
 
    getProyectos():void {
-    this.proyectoService.getProyectos()
+    
+    if (this.getData) {
+      this.subData = this.proyectoService.getProyectos()
     .subscribe(resp => {
       this.proyectos = resp;
       //console.log(resp);
-    }) }
+    })
+    }
+   }
 
     getRoles():void {
       this.roles.forEach(rol => {
@@ -59,6 +66,7 @@ export class ProyectosComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
       this.sub.unsubscribe()
+      this.subData.unsubscribe()
     }
 
 }

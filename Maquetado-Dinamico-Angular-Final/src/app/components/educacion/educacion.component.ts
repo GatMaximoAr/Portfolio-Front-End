@@ -15,7 +15,9 @@ import { StorageService } from 'src/app/services/storage.service';
 export class EducacionComponent implements OnInit, OnDestroy {
 
   isAdmin:boolean = false
+  getData:boolean = false
   sub:Subscription
+  subData:Subscription
   formaciones:Educacion[] = []
   roles:string[] = []
 
@@ -27,7 +29,9 @@ export class EducacionComponent implements OnInit, OnDestroy {
   constructor( private tokenService:TokenService, private eduService:EducacionServiceService,
     private storage:StorageService) { 
 
-      this.sub = this.storage.reload.subscribe(() => {
+      this.sub = this.storage.reload.subscribe((resp) => {
+        this,this.getData = resp
+
         this.getFormaciones()
       })
    }
@@ -49,15 +53,14 @@ export class EducacionComponent implements OnInit, OnDestroy {
 
 
   getFormaciones():void {
-    this.eduService.getFormaciones().subscribe(resp => {
-      this.formaciones = resp;
-      //console.log(resp);
-      //console.log(this.formaciones);
-    })
-
+    if (this.getData) {
+      this.subData = this.eduService.getFormaciones().subscribe(resp => {
+        this.formaciones = resp;
+        //console.log(resp);
+        //console.log(this.formaciones);
+      })
+    }
     //console.log(this.formaciones)
-
-
   }
 
   deleteItem(itemId:number):void {
@@ -72,5 +75,6 @@ export class EducacionComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sub.unsubscribe()
+    this.subData.unsubscribe()
   }
 }

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from '../services/Auth/auth.service';
 import { TokenService } from '../services/Auth/token.service';
 
 @Injectable({
@@ -21,7 +20,7 @@ export class AdminGuard implements CanActivate {
       const expectedRol = route.data['expectedRol']
       const roles = this.tokenService.getAuthorities()
       this.realRol = "user"
-      console.log(this.realRol)
+      //console.log(this.realRol)
 
       roles.forEach(rol => {
         if(rol === "ROLE_ADMIN") {

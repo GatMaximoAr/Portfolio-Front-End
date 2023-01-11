@@ -12,28 +12,20 @@ const httpOptions = {
   })
 }
 
-const httpOptionsPlain = {
-  headers: new HttpHeaders({
-    'Accept': 'text/plain',
-    'Content-Type': 'text/plain'
-  }),
-  'responseType': 'text'
-};
-
 @Injectable({
   providedIn: 'root'
 })
 export class AcercaService {   
 
-  private url = "https://deploy-render-yu6n.onrender.com/acerca";
+  private url = "https://portfolio-ap-backend-k8b1.onrender.com/acerca";
 
-  private url_post = "https://deploy-render-yu6n.onrender.com/acerca/usuario";
+  private url_post = "https://portfolio-ap-backend-k8b1.onrender.com/acerca/usuario";
 
-  private url_put ="https://deploy-render-yu6n.onrender.com/acerca/editar"
+  private url_put ="https://portfolio-ap-backend-k8b1.onrender.com/acerca/editar"
 
-  private url_delete ="https://deploy-render-yu6n.onrender.com/delete/acerca"
+  private url_delete ="https://portfolio-ap-backend-k8b1.onrender.com/delete/acerca"
 
-  private url_get1 = "https://deploy-render-yu6n.onrender.com/acerca"
+  private url_get1 = "https://portfolio-ap-backend-k8b1.onrender.com/acerca"
 
   private path = "acerca-usuario/"
 

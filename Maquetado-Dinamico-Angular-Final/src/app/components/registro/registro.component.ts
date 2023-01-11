@@ -22,7 +22,7 @@ export class RegistroComponent implements OnInit {
 
       "nombreUsuario": ['', [Validators.required, Validators.minLength(4)]],
       "email": ['', [Validators.required, Validators.email]],
-      "password": ['', [Validators.required, Validators.minLength(4), Validators.maxLength(16)]]
+      "password": ['', [Validators.required, Validators.minLength(4), Validators.maxLength(30)]]
     })
   }
 

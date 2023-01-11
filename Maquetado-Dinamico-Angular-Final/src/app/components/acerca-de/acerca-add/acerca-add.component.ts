@@ -43,7 +43,7 @@ export class AcercaAddComponent implements OnInit {
   }
 
   onSubmit(valor: Acerca) {
-    console.log(valor)
+    //console.log(valor)
     this.previewEnvio = valor
     this.previewEnvio.imagen = this.img_perfil
     this.previewEnvio.img_portada = this.img_fondo

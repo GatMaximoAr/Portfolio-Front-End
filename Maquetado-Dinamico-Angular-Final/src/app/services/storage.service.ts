@@ -11,7 +11,7 @@ firebase.default.initializeApp(firebaseConfig)
 })
 export class StorageService {
 
-  reload:BehaviorSubject<boolean> = new BehaviorSubject(true)
+  reload:BehaviorSubject<boolean> = new BehaviorSubject(false)
 
   storageRef = firebase.default.app().storage().ref()
 
