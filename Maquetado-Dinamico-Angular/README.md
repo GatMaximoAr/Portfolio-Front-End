@@ -1,51 +1,44 @@
-# Maquetado-Dinamico-Angular ( Maquetado preliminar )
+# Maquetado Dinamico Angular
 
-Este proyecto corresponde a el desafio del modulo 3, Argentina Programa.
+Este maquetado corresponde a el proyecto integrador de Argentina Programa.
 
-**Funcionalidades de angular utilizadas:**
-* Componentes
-* Servicios
-* Reactive forms
-* Angular routing
-* Angular Guards
+**Funcionalidades de Angular utilizadas:**
+* [Componentes](https://angular.io/guide/component-overview)
+* [Servicios](https://angular.io/tutorial/tour-of-heroes/toh-pt4)
+* [Reactive forms](https://angular.io/guide/reactive-forms)
+* [Angular routing](https://angular.io/guide/routing-overview)
+* [Angular Guards](https://angular.io/api/router/CanActivate)
+* [Interceptors](https://angular.io/api/common/http/HttpInterceptor)
+
 
 **Otras**
-* Oservables y subcripciones (Rxjs)
-* Json server (fake api)
-* Bootstrap CSS
+* [Oservables y subcripciones (Rxjs)](https://rxjs.dev/guide/observable)
+* [Bootstrap CSS](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
+* [Ngx spinner](https://www.npmjs.com/package/ngx-spinner)
 
-## Para el correcto funcionamiento de este maquetado preliminar
-
-**Json-server**
-Se requiere tener instalado Json server (fake api) enlazado al archivo `db.json` el cual de iniciar en el puerto " 5001 "
-
-Como se muestra en el siguiente ejemplo:
-
-en el archivo **Package.json** scripts, agregar
-
-`"server": "json-server --watch db.json --port 5001"`
+## Para el correcto funcionamiento de este maquetado de frontend Angular
 
 **Bootstrap**
 
-Se requiere tener incluido Bootstrap en la carpeta **node_modules**, mediante `npm i bootstrap`  
-### Visualizar proyecto
+Se requiere tener incluido Bootstrap Css en la carpeta **node_modules**, mediante
 
-**Iniciar Json-server**
-`npm run server`
+`npm i bootstrap`  
+
+### Visualizar proyecto
 
 **Iniciar ng-serve**
 `ng serve -o`
 
-### Sobre el Login
+### Sobre el proyecto
+El protfolio cuenta con una conexion ApiRest y bases de datos, lo que permite la creacion de diferentes usuarios y asi poder utilizar todas las funcionalidades del portfolio
 
-**Entrar como visitante**
-permite un vistazo al diseño del portfolio
+### Links
+* [Mi perfil](https://proyecto-argentina-progr-296dd.web.app/portfolio/maximo-gatica)
+* [Registrarse](https://proyecto-argentina-progr-296dd.web.app/singUp)
+* [Log in](https://proyecto-argentina-progr-296dd.web.app/login)
 
-**Entrar con "credenciales"**
-Ademas de permitir ver el diseño de portfolio, da al usuario acceso a funciones de edicion **(Aun en proceso)**. Ademas da acceso a la rutas protegidas de la aplicacion **(en proceso)** 
 
-### Credenciales
+## Nota Importante*
 
-**usuario** : admin
+El deploy del backend esta realizado en el servicio de [Render](https://render.com/) en una intancia **free** de Servicio Web. Debido a esto, luego de 15 minutos de inactividad el servicio se apaga, la primer request efectuada despues de este lapso de tiempo puede demorar incluso un par de minutos hasta responder, no obstante, una vez el servcio ApiRest se encuentra activo todas las siguientes llamamadas se llevan acabo con fluides.
 
-**Password** : admin
